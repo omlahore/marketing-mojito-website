@@ -4,7 +4,9 @@ import path from 'path';
 import fs from 'fs';
 import { logFormSubmission } from '@/lib/google-sheets';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+function getResend() {
+  return new Resend(process.env.RESEND_API_KEY);
+}
 
 // Map resource names to DOCX filenames (18 unique DOCX files for 19 pages)
 const RESOURCE_MAP: Record<string, string> = {
@@ -101,7 +103,7 @@ export async function POST(request: NextRequest) {
       : `⚠️ MANUAL SEND: Add "${docxFilename || pdfName}" to public/resources/ and send to ${email}`;
 
     // Send notification to team
-    const { data: teamData, error: teamError } = await resend.emails.send({
+    const { data: teamData, error: teamError } = await getResend().emails.send({
       from: 'Marketing Mojito <hello@marketingmojito.com>',
       to: ['om.mojito@gmail.com'],
       subject: `Lead Magnet Request - ${pdfName}`,
@@ -194,7 +196,7 @@ Submitted: ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}
     `;
 
     // Send confirmation to user (best-effort - team notification is the critical part)
-    const { error } = await resend.emails.send({
+    const { error } = await getResend().emails.send({
       from: 'Marketing Mojito <hello@marketingmojito.com>',
       to: [email],
       subject: `Your ${pdfName} is ready!`,
