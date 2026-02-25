@@ -69,7 +69,12 @@ const RESOURCE_MAP: Record<string, string> = {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, pdfName, pageName, tool_link } = body;
+    const { name, email, pdfName, pageName, tool_link, website } = body;
+
+    // Honeypot - reject if filled (bot)
+    if (website) {
+      return NextResponse.json({ success: false, error: 'Failed to send' }, { status: 400 });
+    }
 
     // Validation
     if (!name || !email || !pdfName || !pageName) {
@@ -105,7 +110,7 @@ export async function POST(request: NextRequest) {
     // Send notification to team
     const { data: teamData, error: teamError } = await getResend().emails.send({
       from: 'Marketing Mojito <hello@marketingmojito.com>',
-      to: ['om.mojito@gmail.com'],
+      to: ['rahul@marketingmojito.com', 'om.mojito@gmail.com'],
       subject: `Lead Magnet Request - ${pdfName}`,
       text: `
 New Lead Magnet Request

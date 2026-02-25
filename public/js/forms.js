@@ -21,6 +21,13 @@
       submitButton.value = 'Sending...';
     }
 
+    // Honeypot check - bots fill this, humans don't see it
+    const honeypot = form.querySelector('input[name="website"]')?.value || '';
+    if (honeypot) {
+      if (submitButton) { submitButton.disabled = false; submitButton.textContent = originalButtonText; submitButton.value = originalButtonText; }
+      return;
+    }
+
     // Get form data - support multiple field name conventions
     const firstname = form.querySelector('input[name="firstname"]')?.value || '';
     const lastname = form.querySelector('input[name="lastname"]')?.value || '';
@@ -90,6 +97,13 @@
       submitButton.value = 'Sending...';
     }
 
+    // Honeypot check - bots fill this, humans don't see it
+    const honeypot = form.querySelector('input[name="website"]')?.value || '';
+    if (honeypot) {
+      if (submitButton) { submitButton.disabled = false; submitButton.textContent = originalButtonText; submitButton.value = originalButtonText; }
+      return;
+    }
+
     // Get PDF name and page name from form attributes or data
     const pdfName = form.dataset.pdfName || form.querySelector('input[name="pdfName"]')?.value || 'Resource';
     const pageName = form.dataset.pageName || form.querySelector('input[name="pageName"]')?.value || document.title || 'Website';
@@ -142,6 +156,19 @@
     });
   }
 
+  // Inject honeypot field into form (hidden from users, bots fill it)
+  function injectHoneypot(form) {
+    if (form.querySelector('input[name="website"]')) return;
+    const hp = document.createElement('input');
+    hp.type = 'text';
+    hp.name = 'website';
+    hp.setAttribute('tabindex', '-1');
+    hp.setAttribute('autocomplete', 'off');
+    hp.setAttribute('aria-hidden', 'true');
+    hp.style.cssText = 'position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none;';
+    form.appendChild(hp);
+  }
+
   // Initialize forms when DOM is ready
   function initForms() {
     const boundForms = new Set();
@@ -153,6 +180,7 @@
       const hasCompany = form.querySelector('[name="company"], [name="Company-name"], [name="Company-name-2"]');
       if (hasMessage || hasCompany) {
         boundForms.add(form);
+        injectHoneypot(form);
         form.addEventListener('submit', (e) => handleContactForm(form, e), true);
       }
     });
@@ -168,6 +196,7 @@
       document.querySelectorAll(selector).forEach(form => {
         // Don't double-bind contact forms
         if (form.id === 'contact-form') return;
+        injectHoneypot(form);
         form.addEventListener('submit', (e) => handleLeadMagnetForm(form, e), true);
       });
     });

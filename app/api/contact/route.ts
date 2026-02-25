@@ -9,7 +9,12 @@ function getResend() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, company, email, phone, subject, message } = body;
+    const { name, company, email, phone, subject, message, website } = body;
+
+    // Honeypot - reject if filled (bot)
+    if (website) {
+      return NextResponse.json({ success: false, error: 'Failed to send' }, { status: 400 });
+    }
 
     // Basic validation
     if (!name || !email || !message) {
@@ -22,7 +27,7 @@ export async function POST(request: NextRequest) {
     // Send email to both team members
     const { data, error } = await getResend().emails.send({
       from: 'Marketing Mojito <hello@marketingmojito.com>',
-      to: ['om.mojito@gmail.com'],
+      to: ['rahul@marketingmojito.com', 'om.mojito@gmail.com'],
       subject: `New Contact Form - ${name}`,
       text: `
 New Contact Form Submission
