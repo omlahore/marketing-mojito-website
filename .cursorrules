@@ -1,0 +1,58 @@
+Create the file .cursorrules in the project root with the following content exactly:
+
+# Marketing Mojito — Project Rules
+
+## Architecture
+- Next.js 14 (App Router) hybrid site
+- Static Webflow HTML pages served via rewrites from public/
+- React pages in app/ directory use PageShell component
+- Blog system under app/blog/ with content from content/blog-posts.json
+
+## Components
+- PageShell: wraps all React pages (Header + Footer + MobileDock + WebflowStyles + WebflowRuntimeScripts)
+- Header = AnnouncementBar + Navbar
+- All shared components in components/ directory
+
+## CSS
+- Webflow CSS loaded globally: normalize.css, webflow.css, marketing-mojitotesting.webflow.css, mobile-dock.css
+- All in public/css/
+- Use existing Webflow class names for styling — do NOT create new CSS frameworks
+- Fonts: Poppins and Unbounded via Google Fonts
+
+## Page Creation Rules
+- All new React pages MUST use PageShell
+- Do NOT use dangerouslySetInnerHTML for full page bodies
+- Convert Webflow HTML to proper JSX (className, self-closing tags, etc.)
+- Prefix all image paths with / (src="/images/...")
+- Use Next.js Link for internal navigation
+- Remove ALL Webflow data-w-id and data-wf-* attributes (they cause IX2 issues)
+- Remove ALL inline style attributes from converted HTML (IX2 animation states)
+- Keep all Webflow CSS class names exactly as they are
+
+## Converting Static HTML Pages to React
+When converting a public/*.html page to a React page:
+1. Create app/[page-name]/page.tsx
+2. Wrap content in PageShell
+3. Convert HTML body (between header and footer) to clean JSX
+4. Remove data-w-id, data-wf-*, and inline style attributes
+5. Remove page from htmlPages array in next.config.mjs
+6. Add redirect: /page-name.html → /page-name
+7. Rename public/page-name.html to public/page-name.html.bak
+8. Update app/sitemap.ts if needed
+
+## Development
+- Use `npm run dev` for development (NOT npm run build)
+- Clear cache before dev: `rm -rf .next && npm run dev`
+- npm run build is ONLY for deployment
+- Deploy via: bash deploy-lightsail.sh
+
+## Common Issues
+- "Cannot find module './948.js'" → rm -rf .next && npm run dev
+- Hydration errors → check for duplicate HTML (static file + React page both serving)
+- Invisible text on converted pages → inline style attributes not stripped
+- Mobile nav broken → desktop navbar needs display:none on mobile, MobileDock handles mobile nav
+
+## API Routes
+- POST /api/contact — contact form (Resend + Google Sheets)
+- POST /api/lead-magnet — lead magnet forms (Resend + Sheets + optional DOCX attachment)
+- GET /api/config — public config (reCAPTCHA site key)

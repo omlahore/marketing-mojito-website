@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { logFormSubmission } from '@/lib/google-sheets';
+import { checkRateLimit, checkTimestamp, checkHoneypots, looksLikeSpam, verifyRecaptcha } from '@/lib/spam';
 
 function getResend() {
   return new Resend(process.env.RESEND_API_KEY);
@@ -9,12 +10,23 @@ function getResend() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, company, email, phone, subject, message, website } = body;
 
-    // Honeypot - reject if filled (bot)
-    if (website) {
+    // Rate limit - 3 per IP per hour
+    if (!checkRateLimit(request)) {
+      return NextResponse.json({ success: false, error: 'Too many requests' }, { status: 429 });
+    }
+
+    // Timestamp - form must be visible 4+ sec before submit (blocks bots)
+    if (!checkTimestamp(body)) {
       return NextResponse.json({ success: false, error: 'Failed to send' }, { status: 400 });
     }
+
+    // Honeypots - reject if any filled
+    if (!checkHoneypots(body)) {
+      return NextResponse.json({ success: false, error: 'Failed to send' }, { status: 400 });
+    }
+
+    const { name, company, email, phone, subject, message } = body;
 
     // Basic validation
     if (!name || !email || !message) {
@@ -22,6 +34,18 @@ export async function POST(request: NextRequest) {
         { success: false, error: 'Missing required fields' },
         { status: 400 }
       );
+    }
+
+    // Spam pattern check
+    if (looksLikeSpam(body)) {
+      return NextResponse.json({ success: false, error: 'Failed to send' }, { status: 400 });
+    }
+
+    // reCAPTCHA v3 (when configured) - only verify if token was sent (script may fail to load)
+    if (process.env.RECAPTCHA_SECRET_KEY && body.recaptchaToken) {
+      if (!(await verifyRecaptcha(body.recaptchaToken))) {
+        return NextResponse.json({ success: false, error: 'Verification failed' }, { status: 400 });
+      }
     }
 
     // Send email to both team members

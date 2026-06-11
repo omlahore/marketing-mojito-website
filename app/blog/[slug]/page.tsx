@@ -16,9 +16,26 @@ export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) return { title: 'Not Found' };
+  const url = `https://marketingmojito.com/blog/${post.slug}`;
+  const description = post.metaDescription || post.excerpt.slice(0, 160);
   return {
     title: `${post.title} - Marketing Mojito Blog`,
-    description: post.metaDescription || post.excerpt.slice(0, 160),
+    description,
+    // CRITICAL: without a per-post canonical, every post inherits the root
+    // layout's canonical and tells Google it's a duplicate of the homepage.
+    alternates: { canonical: url },
+    openGraph: {
+      type: 'article',
+      url,
+      title: post.title,
+      description,
+      images: post.featuredImage ? [{ url: post.featuredImage }] : undefined,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description,
+    },
   };
 }
 

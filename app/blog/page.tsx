@@ -4,6 +4,7 @@ import BlogGrid from './BlogGrid';
 export const metadata = {
   title: 'Mojito Labs - Marketing Mojito Blog',
   description: 'Digital marketing insights, strategies, and tips from Marketing Mojito.',
+  alternates: { canonical: 'https://marketingmojito.com/blog' },
 };
 
 export default function BlogPage() {

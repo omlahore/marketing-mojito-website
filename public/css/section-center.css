@@ -1,0 +1,73 @@
+/* Center align Who We Are and OUR SOLUTIONS sections - mobile only */
+@media screen and (max-width: 991px) {
+  /* Who We Are section */
+  .section-who-we-are .hero_header-wrapper {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .section-who-we-are .hero_header-text {
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center;
+  }
+  .section-who-we-are .hero_header-left,
+  .section-who-we-are .hero_header-right {
+    align-items: center;
+    text-align: center;
+  }
+  .section-who-we-are .who-para {
+    text-align: center !important;
+  }
+  .section-who-we-are .hero_header-list {
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  .section-who-we-are .header-image {
+    align-self: center !important;
+  }
+
+  /* OUR SOLUTIONS section */
+  .section_gallery-text .galler-wrapper {
+    align-items: center;
+  }
+  .section_gallery-text .gallery_text-wrapper {
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center;
+  }
+  .section_gallery-text .hero_header-left-2,
+  .section_gallery-text .hero_header-right--2 {
+    align-items: center;
+    text-align: center;
+  }
+  .section_gallery-text .our-sol-para {
+    text-align: center !important;
+  }
+  .section_gallery-text .hero_header-list {
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  .section_gallery-text .header-image {
+    align-self: center !important;
+  }
+}
+
+/* Increase font size for solution section headings on mobile */
+@media screen and (max-width: 991px) {
+  .new-box-wrapper .heading-12 {
+    font-size: 1.125rem !important;
+  }
+}
+
+/* Increase font size of hero headline "Design. Think. Solve. Develop." */
+.text-block-53,
+.text-block-54 {
+  font-size: 3.5rem !important;
+}
+@media screen and (max-width: 991px) {
+  .text-block-53,
+  .text-block-54 {
+    font-size: 1.75rem !important;
+  }
+}

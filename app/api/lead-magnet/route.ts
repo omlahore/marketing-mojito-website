@@ -3,6 +3,7 @@ import { Resend } from 'resend';
 import path from 'path';
 import fs from 'fs';
 import { logFormSubmission } from '@/lib/google-sheets';
+import { checkRateLimit, checkTimestamp, checkHoneypots, looksLikeSpam, verifyRecaptcha } from '@/lib/spam';
 
 function getResend() {
   return new Resend(process.env.RESEND_API_KEY);
@@ -69,12 +70,23 @@ const RESOURCE_MAP: Record<string, string> = {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, pdfName, pageName, tool_link, website } = body;
 
-    // Honeypot - reject if filled (bot)
-    if (website) {
+    // Rate limit - 3 per IP per hour
+    if (!checkRateLimit(request)) {
+      return NextResponse.json({ success: false, error: 'Too many requests' }, { status: 429 });
+    }
+
+    // Timestamp - form must be visible 4+ sec before submit (blocks bots)
+    if (!checkTimestamp(body)) {
       return NextResponse.json({ success: false, error: 'Failed to send' }, { status: 400 });
     }
+
+    // Honeypots - reject if any filled
+    if (!checkHoneypots(body)) {
+      return NextResponse.json({ success: false, error: 'Failed to send' }, { status: 400 });
+    }
+
+    const { name, email, company, pdfName, pageName, tool_link } = body;
 
     // Validation
     if (!name || !email || !pdfName || !pageName) {
@@ -82,6 +94,18 @@ export async function POST(request: NextRequest) {
         { success: false, error: 'Missing required fields' },
         { status: 400 }
       );
+    }
+
+    // Spam pattern check (disposable emails etc)
+    if (looksLikeSpam(body)) {
+      return NextResponse.json({ success: false, error: 'Failed to send' }, { status: 400 });
+    }
+
+    // reCAPTCHA v3 (when configured) - only verify if token was sent (script may fail to load)
+    if (process.env.RECAPTCHA_SECRET_KEY && body.recaptchaToken) {
+      if (!(await verifyRecaptcha(body.recaptchaToken))) {
+        return NextResponse.json({ success: false, error: 'Verification failed' }, { status: 400 });
+      }
     }
 
     const toolLinkSection = tool_link
@@ -122,7 +146,7 @@ Page: ${pageName}
 ${toolLinkSection}Contact Details:
 Name: ${name}
 Email: ${email}
-
+${typeof company === 'string' && company.trim() ? `Company: ${company.trim()}\n` : ''}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Action Required: ${actionRequired}
 Submitted: ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}
@@ -171,9 +195,9 @@ Submitted: ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}
           <p style="color: white; font-size: 16px; margin: 0 0 15px 0; font-weight: 600;">
             🎯 Want More Free Resources?
           </p>
-          <a href="https://marketingmojito.com/free-tools-and-template" 
+          <a href="https://marketingmojito.com/free-templates" 
              style="display: inline-block; background: white; color: #82C341; padding: 12px 30px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 16px;">
-            Explore All Free Tools
+            Explore Free Templates
           </a>
         </div>
 
@@ -220,6 +244,7 @@ Submitted: ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}
       formType: tool_link ? 'Free Tool' : 'Lead Magnet',
       name,
       email,
+      company: typeof company === 'string' ? company.trim() : '',
       resourceName: pdfName,
       page: pageName,
       status: docxAttached

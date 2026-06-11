@@ -2,6 +2,40 @@
 (function() {
   'use strict';
 
+  let recaptchaSiteKey = null; // null = not fetched, '' = no key, 'xxx' = has key
+
+  // Fetch config (reCAPTCHA site key) once
+  function getRecaptchaKey(cb) {
+    if (recaptchaSiteKey !== null) {
+      cb(recaptchaSiteKey || '');
+      return;
+    }
+    fetch('/api/config')
+      .then(r => r.json())
+      .then(d => { recaptchaSiteKey = d.recaptchaSiteKey || ''; cb(recaptchaSiteKey); })
+      .catch(() => { recaptchaSiteKey = ''; cb(''); });
+  }
+
+  // Load reCAPTCHA script and get token
+  function getRecaptchaToken(siteKey, action, cb) {
+    if (!siteKey) { cb(''); return; }
+    function doExecute() {
+      if (typeof grecaptcha !== 'undefined' && grecaptcha.execute) {
+        grecaptcha.execute(siteKey, { action: action || 'submit' }).then(cb).catch(() => cb(''));
+      } else {
+        cb('');
+      }
+    }
+    if (typeof grecaptcha !== 'undefined') {
+      doExecute();
+    } else {
+      const s = document.createElement('script');
+      s.src = 'https://www.google.com/recaptcha/api.js?render=' + siteKey;
+      s.onload = doExecute;
+      document.head.appendChild(s);
+    }
+  }
+
   // Handle contact form submissions
   function handleContactForm(form, event) {
     event.preventDefault();
@@ -21,9 +55,10 @@
       submitButton.value = 'Sending...';
     }
 
-    // Honeypot check - bots fill this, humans don't see it
+    // Honeypot check - bots fill these, humans don't see them
     const honeypot = form.querySelector('input[name="website"]')?.value || '';
-    if (honeypot) {
+    const honeypot2 = form.querySelector('input[name="company_url"]')?.value || '';
+    if (honeypot || honeypot2) {
       if (submitButton) { submitButton.disabled = false; submitButton.textContent = originalButtonText; submitButton.value = originalButtonText; }
       return;
     }
@@ -39,10 +74,12 @@
       company: form.querySelector('input[name="company"]')?.value || form.querySelector('input[name="Company-name"]')?.value || form.querySelector('input[name="Company-name-2"]')?.value || '',
       phone: form.querySelector('input[name="phone"]')?.value || form.querySelector('input[name="Phone"]')?.value || '',
       subject: form.querySelector('input[name="subject"]')?.value || form.querySelector('input[name="Subject"]')?.value || '',
-      message: form.querySelector('textarea[name="message"]')?.value || form.querySelector('input[name="Message"]')?.value || form.querySelector('textarea[name="Message"]')?.value || ''
+      message: form.querySelector('textarea[name="message"]')?.value || form.querySelector('input[name="Message"]')?.value || form.querySelector('textarea[name="Message"]')?.value || '',
+      _loaded: form.querySelector('input[name="_loaded"]')?.value ? parseInt(form.querySelector('input[name="_loaded"]').value, 10) : Date.now()
     };
 
-    fetch('/api/contact', {
+    function submitContact() {
+      fetch('/api/contact', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)
@@ -77,6 +114,18 @@
         submitButton.value = originalButtonText;
       }
     });
+    }
+
+    getRecaptchaKey(function(siteKey) {
+      if (siteKey) {
+        getRecaptchaToken(siteKey, 'contact', function(token) {
+          formData.recaptchaToken = token;
+          submitContact();
+        });
+      } else {
+        submitContact();
+      }
+    });
   }
 
   // Handle lead magnet form submissions
@@ -97,9 +146,10 @@
       submitButton.value = 'Sending...';
     }
 
-    // Honeypot check - bots fill this, humans don't see it
+    // Honeypot check - bots fill these, humans don't see them
     const honeypot = form.querySelector('input[name="website"]')?.value || '';
-    if (honeypot) {
+    const honeypot2 = form.querySelector('input[name="company_url"]')?.value || '';
+    if (honeypot || honeypot2) {
       if (submitButton) { submitButton.disabled = false; submitButton.textContent = originalButtonText; submitButton.value = originalButtonText; }
       return;
     }
@@ -116,10 +166,12 @@
       name: nameField || (firstname + ' ' + lastname).trim() || 'Unknown',
       email: form.querySelector('input[name="email"]')?.value || form.querySelector('input[name="Email"]')?.value || '',
       pdfName: pdfName,
-      pageName: pageName
+      pageName: pageName,
+      _loaded: form.querySelector('input[name="_loaded"]')?.value ? parseInt(form.querySelector('input[name="_loaded"]').value, 10) : Date.now()
     };
 
-    fetch('/api/lead-magnet', {
+    function submitLeadMagnet() {
+      fetch('/api/lead-magnet', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)
@@ -154,19 +206,45 @@
         submitButton.value = originalButtonText;
       }
     });
+    }
+
+    getRecaptchaKey(function(siteKey) {
+      if (siteKey) {
+        getRecaptchaToken(siteKey, 'lead_magnet', function(token) {
+          formData.recaptchaToken = token;
+          submitLeadMagnet();
+        });
+      } else {
+        submitLeadMagnet();
+      }
+    });
   }
 
-  // Inject honeypot field into form (hidden from users, bots fill it)
-  function injectHoneypot(form) {
-    if (form.querySelector('input[name="website"]')) return;
-    const hp = document.createElement('input');
-    hp.type = 'text';
-    hp.name = 'website';
-    hp.setAttribute('tabindex', '-1');
-    hp.setAttribute('autocomplete', 'off');
-    hp.setAttribute('aria-hidden', 'true');
-    hp.style.cssText = 'position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none;';
-    form.appendChild(hp);
+  // Inject honeypot + timestamp fields (hidden from users, bots fill honeypots)
+  function injectSpamFields(form) {
+    const hiddenStyle = 'position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none;';
+    const attrs = { tabindex: '-1', autocomplete: 'off', 'aria-hidden': 'true' };
+
+    if (!form.querySelector('input[name="website"]')) {
+      const hp = document.createElement('input');
+      hp.type = 'text'; hp.name = 'website';
+      Object.entries(attrs).forEach(([k, v]) => hp.setAttribute(k, v));
+      hp.style.cssText = hiddenStyle;
+      form.appendChild(hp);
+    }
+    if (!form.querySelector('input[name="company_url"]')) {
+      const hp2 = document.createElement('input');
+      hp2.type = 'text'; hp2.name = 'company_url';
+      Object.entries(attrs).forEach(([k, v]) => hp2.setAttribute(k, v));
+      hp2.style.cssText = hiddenStyle;
+      form.appendChild(hp2);
+    }
+    if (!form.querySelector('input[name="_loaded"]')) {
+      const ts = document.createElement('input');
+      ts.type = 'hidden'; ts.name = '_loaded';
+      ts.value = String(Date.now());
+      form.appendChild(ts);
+    }
   }
 
   // Initialize forms when DOM is ready
@@ -180,7 +258,7 @@
       const hasCompany = form.querySelector('[name="company"], [name="Company-name"], [name="Company-name-2"]');
       if (hasMessage || hasCompany) {
         boundForms.add(form);
-        injectHoneypot(form);
+        injectSpamFields(form);
         form.addEventListener('submit', (e) => handleContactForm(form, e), true);
       }
     });
@@ -196,7 +274,9 @@
       document.querySelectorAll(selector).forEach(form => {
         // Don't double-bind contact forms
         if (form.id === 'contact-form') return;
-        injectHoneypot(form);
+        if (form.dataset.mmFormsBound === '1') return;
+        form.dataset.mmFormsBound = '1';
+        injectSpamFields(form);
         form.addEventListener('submit', (e) => handleLeadMagnetForm(form, e), true);
       });
     });
@@ -208,4 +288,6 @@
   } else {
     initForms();
   }
+
+  window.__mmInitForms = initForms;
 })();
