@@ -9,6 +9,91 @@ function getResend() {
   return new Resend(process.env.RESEND_API_KEY);
 }
 
+/** Escape text for safe embedding inside HTML emails. */
+function escHtml(s: string): string {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+/**
+ * URL-only website audit. Fetches the page server-side and scores real,
+ * URL-derivable signals (HTTPS, title, meta description, viewport, H1, Open
+ * Graph, favicon, response time, page weight). Returns a plain-text report.
+ * SSRF-guarded: http/https only, no localhost / private ranges.
+ */
+async function auditWebsite(rawUrl: string): Promise<string> {
+  let normalized = rawUrl.trim();
+  if (!/^https?:\/\//i.test(normalized)) normalized = 'https://' + normalized;
+
+  let u: URL;
+  try {
+    u = new URL(normalized);
+  } catch {
+    return `We couldn't read the URL "${rawUrl}". Please reply with a valid website address and we'll run the audit.`;
+  }
+  const host = u.hostname.toLowerCase();
+  if (
+    u.protocol !== 'http:' && u.protocol !== 'https:' ||
+    host === 'localhost' ||
+    /^(127\.|10\.|192\.168\.|169\.254\.|0\.)/.test(host) ||
+    host === '::1'
+  ) {
+    return `The URL "${rawUrl}" can't be audited automatically. Reply to this email and our team will review it manually.`;
+  }
+
+  try {
+    const t0 = Date.now();
+    const res = await fetch(u.toString(), {
+      redirect: 'follow',
+      headers: { 'User-Agent': 'MarketingMojitoAuditBot/1.0 (+https://marketingmojito.com)' },
+      signal: AbortSignal.timeout(9000),
+    });
+    const ms = Date.now() - t0;
+    const html = (await res.text()).slice(0, 600000);
+    const sizeKb = Math.round(Buffer.byteLength(html) / 1024);
+
+    const checks: { label: string; ok: boolean; weight: number; fix: string }[] = [
+      { label: 'Secure (HTTPS)', ok: u.protocol === 'https:', weight: 12, fix: 'Install an SSL certificate — browsers and Google flag non-HTTPS sites.' },
+      { label: 'Loads reasonably fast', ok: ms < 2500, weight: 16, fix: `Initial response took ${ms}ms. Compress assets, enable caching, and cut unused scripts.` },
+      { label: 'Page weight is lean', ok: sizeKb < 200, weight: 8, fix: `The HTML is ~${sizeKb}KB. Trim inline bloat and lazy-load heavy media.` },
+      { label: 'Has a page title', ok: /<title[^>]*>([^<]{3,})<\/title>/i.test(html), weight: 14, fix: 'Add a unique, descriptive <title> — it is the single biggest on-page SEO signal.' },
+      { label: 'Has a meta description', ok: /<meta[^>]+name=["']description["'][^>]+content=["'][^"']{10,}/i.test(html), weight: 12, fix: 'Add a 120–160 char meta description to improve click-through from search.' },
+      { label: 'Mobile viewport set', ok: /<meta[^>]+name=["']viewport["']/i.test(html), weight: 14, fix: 'Add a viewport meta tag so the site renders correctly on phones.' },
+      { label: 'Has an H1 heading', ok: /<h1[\s>]/i.test(html), weight: 8, fix: 'Add a single clear <h1> describing the page for users and search engines.' },
+      { label: 'Social share tags (Open Graph)', ok: /<meta[^>]+property=["']og:/i.test(html), weight: 8, fix: 'Add Open Graph tags so shared links show a proper title and image.' },
+      { label: 'Favicon present', ok: /<link[^>]+rel=["'][^"']*icon/i.test(html), weight: 4, fix: 'Add a favicon for a polished, trustworthy browser tab.' },
+      { label: 'Analytics installed', ok: /(googletagmanager|gtag\(|G-[A-Z0-9]{6,}|analytics\.js)/i.test(html), weight: 4, fix: 'Install GA4 and track lead events — you cannot improve what you do not measure.' },
+    ];
+
+    const total = checks.reduce((a, c) => a + c.weight, 0);
+    const got = checks.reduce((a, c) => a + (c.ok ? c.weight : 0), 0);
+    const score = Math.round((got / total) * 100);
+    const grade = score >= 85 ? 'A' : score >= 70 ? 'B' : score >= 55 ? 'C' : score >= 40 ? 'D' : 'F';
+    const passed = checks.filter((c) => c.ok);
+    const failed = checks.filter((c) => !c.ok);
+
+    const lines: string[] = [];
+    lines.push(`Website Health Report for ${u.hostname}`);
+    lines.push(`Audited: ${u.toString()}`);
+    lines.push('');
+    lines.push(`OVERALL SCORE: ${score}/100  (Grade ${grade})`);
+    lines.push(`Initial load: ${ms}ms   Page weight: ~${sizeKb}KB`);
+    lines.push('');
+    if (failed.length) {
+      lines.push(`WHAT TO FIX (${failed.length}):`);
+      failed.forEach((c, i) => lines.push(`  ${i + 1}. ${c.label} — ${c.fix}`));
+      lines.push('');
+    }
+    if (passed.length) {
+      lines.push(`PASSING (${passed.length}): ${passed.map((c) => c.label).join(', ')}`);
+      lines.push('');
+    }
+    lines.push('Want us to fix these for you? Book a free 15-min call: https://marketingmojito.com/contact-us');
+    return lines.join('\n');
+  } catch {
+    return `We tried to audit "${u.hostname}" but couldn't reach it automatically (it may block bots or be temporarily down). Reply to this email and our team will run a manual review for you.`;
+  }
+}
+
 // Map resource names to DOCX filenames (18 unique DOCX files for 19 pages)
 const RESOURCE_MAP: Record<string, string> = {
   // Homepage & Partner page - same file
@@ -86,7 +171,9 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: false, error: 'Failed to send' }, { status: 400 });
     }
 
-    const { name, email, company, pdfName, pageName, tool_link } = body;
+    const { name, email, company, pdfName, pageName, tool_link, auditUrl } = body;
+    let resultDetails: string | undefined =
+      typeof body.resultDetails === 'string' ? body.resultDetails : undefined;
 
     // Validation
     if (!name || !email || !pdfName || !pageName) {
@@ -108,9 +195,16 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    // URL-only website audit: compute the report server-side so no score is
+    // ever exposed to the client — the result exists only in the email.
+    if (typeof auditUrl === 'string' && auditUrl.trim()) {
+      resultDetails = await auditWebsite(auditUrl);
+    }
+
     const toolLinkSection = tool_link
       ? `Direct PDF Link: ${tool_link}\n\n`
       : '';
+    const resultTextSection = resultDetails ? `Result delivered to lead:\n${resultDetails}\n\n` : '';
 
     // Resolve DOCX filename and load file for user email attachment
     const docxFilename = RESOURCE_MAP[pdfName];
@@ -143,7 +237,7 @@ New Lead Magnet Request
 Resource Requested: ${pdfName}
 Page: ${pageName}
 
-${toolLinkSection}Contact Details:
+${toolLinkSection}${resultTextSection}Contact Details:
 Name: ${name}
 Email: ${email}
 ${typeof company === 'string' && company.trim() ? `Company: ${company.trim()}\n` : ''}
@@ -162,7 +256,17 @@ Submitted: ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}
     }
 
     // Prepare user email with HTML formatting
-    const resourceMessage = docxAttached
+    const resultBlock = resultDetails
+      ? `<div style="background:#f7fbf3;border:1px solid #d9ecc6;border-radius:8px;padding:20px;margin:20px 0;">
+           <pre style="white-space:pre-wrap;word-wrap:break-word;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;line-height:1.55;color:#333;margin:0;">${escHtml(resultDetails)}</pre>
+         </div>`
+      : '';
+
+    const resourceMessage = resultDetails
+      ? `<p style="font-size: 16px; color: #555; line-height: 1.6; margin-bottom: 8px;">
+           Here's the result you requested:
+         </p>${resultBlock}`
+      : docxAttached
       ? `<p style="font-size: 16px; color: #555; line-height: 1.6; margin-bottom: 20px;">
            Your requested resource is attached to this email. You can open it with Microsoft Word or Google Docs.
          </p>`

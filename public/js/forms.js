@@ -87,6 +87,8 @@
     .then(response => response.json())
     .then(data => {
       if (data.success) {
+        // GA4 key event - fires only on confirmed successful submission
+        if (typeof gtag === 'function') gtag('event', 'generate_lead', { lead_type: 'contact_form', form_id: form.id || 'contact' });
         if (errorMessage) errorMessage.style.display = 'none';
         if (successMessage) {
           form.style.display = 'none';
@@ -179,6 +181,7 @@
     .then(response => response.json())
     .then(data => {
       if (data.success) {
+        if (typeof gtag === 'function') gtag('event', 'generate_lead', { lead_type: 'lead_magnet', resource: pdfName || 'unknown' });
         if (errorMessage) errorMessage.style.display = 'none';
         if (successMessage) {
           form.style.display = 'none';

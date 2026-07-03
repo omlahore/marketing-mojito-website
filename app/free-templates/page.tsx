@@ -105,7 +105,7 @@ export default function FreeTemplatesPage() {
               <div className="columns-11 w-row">
                 <div className="column-15 _1 w-col w-col-6">
                   <div className="hero-left">
-                    <h2 className="inner-banner-heading">Free Templates</h2>
+                    <h1 className="inner-banner-heading">Free Templates</h1>
                     <div className="hero_para">
                       <div className="inner-banner-para">
                         Work smarter, not harder. Gain instant access to these powerful, ready to use

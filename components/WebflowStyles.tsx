@@ -18,6 +18,8 @@ export default function WebflowStyles() {
       <link href="/css/marketing-mojitotesting.webflow.css" rel="stylesheet" />
       {/* eslint-disable-next-line @next/next/no-css-tags */}
       <link href="/css/mobile-dock.css" rel="stylesheet" />
+      {/* eslint-disable-next-line @next/next/no-css-tags */}
+      <link href="/css/mobile-fixes.css" rel="stylesheet" />
 
       {/* Fonts */}
       <link href="https://fonts.googleapis.com" rel="preconnect" />

@@ -51,7 +51,11 @@ export default function BlogGrid({ posts }: { posts: Post[] }) {
           <article key={post.slug} className="blog-card">
             <Link href={`/blog/${post.slug}`} className="blog-card-image-link">
               <img
-                src={post.featuredImage || FALLBACK_IMAGE}
+                src={
+                  post.featuredImage && !post.featuredImage.includes('/wp-content/')
+                    ? post.featuredImage
+                    : FALLBACK_IMAGE
+                }
                 alt={post.title}
                 className="blog-card-image"
                 loading="lazy"

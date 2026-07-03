@@ -1,0 +1,16 @@
+# Disavow file for marketingmojito.com
+# STATUS: PENDING DATA — not yet populated.
+#
+# The ~29 spammy referring domains (spam score ~50) could not be pulled on
+# 2026-07-02 because the DataForSEO balance was exhausted (40200 Payment Required).
+#
+# TO POPULATE:
+#   1) Top up the DataForSEO balance.
+#   2) Run:  ./generate-disavow.py --target marketingmojito.com --spam-threshold 40
+#      (this overwrites this file with the real flagged domains)
+#   3) Review every line, then upload to Google Search Console:
+#      https://search.google.com/search-console/disavow-links
+#
+# NOTE: Do NOT add marketing-mojit.webflow.io here — that is your own staging
+# mirror and must be canonicalized/de-indexed instead (see BACKLINK-PLAYBOOK.md,
+# Part 1), never disavowed.

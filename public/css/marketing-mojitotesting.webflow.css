@@ -1562,8 +1562,8 @@ h2 {
   grid-row-gap: 4rem;
   flex-flow: column;
   align-items: center;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-left: 0;
+  padding-right: 0;
   display: flex;
 }
 
@@ -2598,7 +2598,7 @@ h2 {
 
 .tool_block-wrapper._1 {
   flex-flow: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: stretch;
 }
 
@@ -12579,10 +12579,10 @@ h2 {
   }
 
   .tool_block-wrapper._1 {
-    grid-column-gap: 1.5rem;
-    grid-row-gap: 1.5rem;
-    padding-left: 200px;
-    padding-right: 200px;
+    grid-column-gap: 2.5rem;
+    grid-row-gap: 2.5rem;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .technology-card-icon {
@@ -19607,3 +19607,115 @@ h2 {
 }
 
 
+
+/* ============================================================
+   Consistency pass (Marketing Mojito) — standardized CTA,
+   hidden CMS empty-states, normalized type. Appended; overrides above.
+   ============================================================ */
+
+/* Hide Webflow CMS empty placeholders ("No items found", dummy items) */
+.w-dyn-empty { display: none !important; }
+
+/* Standardized CTA blocks: both wrapper variants share identical
+   width, padding, and heading size so CTAs look the same on every page.
+   (Titles still differ per page — only the styling is unified.) */
+.contacr-wrapperr,
+.cta-wrapper {
+  width: 90%;
+  max-width: 64rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 4rem !important;
+  padding-bottom: 4rem !important;
+}
+.contacr-wrapperr .heading-style-h3,
+.cta-wrapper .heading-style-h3,
+.contacr-wrapperr .heading-style-h3.white,
+.contacr-wrapperr .heading-style-h3.yellow,
+.cta-wrapper .heading-style-h3.white,
+.cta-wrapper .heading-style-h3.yellow {
+  font-size: 2rem;
+  line-height: 1.25;
+}
+@media screen and (max-width: 767px) {
+  .contacr-wrapperr,
+  .cta-wrapper { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
+  .contacr-wrapperr .heading-style-h3,
+  .cta-wrapper .heading-style-h3,
+  .contacr-wrapperr .heading-style-h3.white,
+  .contacr-wrapperr .heading-style-h3.yellow,
+  .cta-wrapper .heading-style-h3.white,
+  .cta-wrapper .heading-style-h3.yellow { font-size: 1.5rem; }
+}
+
+/* ============================================================
+   Standardized page-CTA buttons — unify size/shape/type.
+   Scoped to page CTA button classes only (NOT .button / .new-w-arrow,
+   which are used by the smaller navbar buttons and rely on their own
+   right-padding for a background arrow icon).
+   ============================================================ */
+.button-brand,
+.brand_button-double,
+.solid-button-wrapper,
+.outline-btn,
+.cta-btn {
+  font-family: Poppins, sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  border-radius: 0.625rem !important;
+  padding: 0.9rem 1.75rem !important;
+}
+@media screen and (max-width: 767px) {
+  .button-brand,
+  .brand_button-double,
+  .solid-button-wrapper,
+  .outline-btn,
+  .cta-btn {
+    font-size: 0.9rem !important;
+    padding: 0.8rem 1.4rem !important;
+  }
+}
+
+/* Navbar dropdown caret — consistent size and vertical alignment. */
+.nav-dropdown-toggle { align-items: center; }
+.image-10 { width: 10px !important; height: auto !important; vertical-align: middle; }
+
+/* ============================================================
+   FAQ consistency — the contact-us FAQ (.faq1_*) used oversized
+   question text (1.5rem) and 7.5rem side padding, far bigger than
+   the standard FAQ (.faq_question, 1rem). Normalize to match.
+   ============================================================ */
+.faq1_question { padding: 1.25rem 0 !important; }
+.faq1_question .text-28 { font-size: 1rem !important; line-height: 1.5; }
+.faq1_accordion .faq-answer .text-28,
+.faq1_accordion p { font-size: 1rem; line-height: 1.6; }
+
+/* Constrain the contact-us FAQ list to a centered 60rem column, matching the
+   standard FAQ (.faq_component = 60rem). Without this it spanned the full 90rem
+   container, so questions ran to the edge once the oversized padding was removed. */
+.faq .faq-list-wrapper {
+  max-width: 60rem;
+  width: 100%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.faq .faq-wrapper-2 { max-width: 60rem; margin-left: auto; margin-right: auto; }
+
+/* ============================================================
+   CANONICAL TYPOGRAPHY — from the Figma Style Guide.
+   Unbounded headings / Poppins body. Sizes below are the desktop
+   scale; the site's existing fluid (vw-based) html font-size scales
+   them down responsively, so we don't double-apply mobile values.
+   This makes heading sizes & line-heights consistent on every page.
+   (CTA headings keep their own smaller size via higher-specificity
+   rules added earlier — intentional.)
+   ============================================================ */
+.heading-style-h1,
+.inner-banner-heading        { font-size: 3.5rem !important; line-height: 1.2 !important; }
+.heading-style-h2            { font-size: 3rem   !important; line-height: 1.2 !important; }
+.heading-style-h3,
+.main-heading-style-h3       { font-size: 2.5rem !important; line-height: 1.2 !important; }
+.heading-style-h4            { font-size: 2rem   !important; line-height: 1.3 !important; }
+.heading-style-h5            { font-size: 1.5rem !important; line-height: 1.4 !important; }
+.heading-style-h6            { font-size: 1.25rem!important; line-height: 1.4 !important; }

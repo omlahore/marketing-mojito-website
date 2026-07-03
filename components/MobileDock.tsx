@@ -56,6 +56,7 @@ const SOLUTION_SECTIONS: DockSection[] = [
       { href: '/saas-digital-marketing', label: 'SaaS' },
       { href: '/hospitality-digital-marketing', label: 'Hospitality' },
       { href: '/entertainment-digital-marketing', label: 'Entertainment' },
+      { href: '/celebrity-brand-marketing', label: 'Celebrity & Artists' },
     ],
   },
 ];

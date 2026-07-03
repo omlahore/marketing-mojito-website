@@ -13,10 +13,10 @@ export default function HomeContent() {
             <div className="w-layout-blockcontainer container-large banner-container w-container">
               <div className="hero_wrapper">
                 <div data-w-id="7b63f6bc-d323-fa22-a7d7-c59af79957f9" style={{ opacity: '0' }} className="hero_text-wrapper _1">
-                  <a id="heading-h1" href="#" className="heading-style-h1 spacing-12 text-black w-inline-block">
+                  <h1 id="heading-h1" className="heading-style-h1 spacing-12 text-black w-inline-block">
                     <div className="text-block-53">Design. Think.</div>
                     <div className="text-block-54">Solve. Develop.</div>
-                  </a>
+                  </h1>
                   <p className="banner-subtitle">
                     Creating digital experiences that connect, engage and
                     <br />
@@ -75,19 +75,62 @@ export default function HomeContent() {
           <div className="padding-global">
             <div className="w-layout-blockcontainer container-large w-container">
               <div className="hero_header-wrapper">
-                <img src="/images/who-we-are.png" loading="lazy" alt="" className="header-image left-align" />
+                <img src="/images/who-we-are.png" loading="lazy" alt="Who we are — Marketing Mojito" className="header-image left-align" />
                 <div className="hero_header-text left-align">
                   <div className="hero_header-left">
                     <h2 className="heading-style-h2">Who We Are </h2>
                   </div>
                   <div className="hero_header-right">
                     <div className="hero_header-para">
-                      <p className="who-para left-align">At Marketing Mojito, we blend creativity with strategy to craft impactful digital experiences. We’re a team of designers, strategists, and marketers who believe in making brands stand out in a crowded digital world.</p>
+                      <p className="who-para left-align">Marketing Mojito is a full-service digital marketing agency in India, blending creativity with strategy to craft impactful digital experiences. We’re a team of designers, strategists, and marketers who believe in making brands stand out in a crowded digital world.</p>
                     </div>
                     <div className="hero_header-list left-align">
                       <a href="/about-us" className="button new-w-arrow w-button">About Us</a>
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="section-who-we-are seo-intro-section">
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+.seo-intro-section .heading-style-h2 { white-space: normal; margin-bottom: 2rem; }
+.seo-intro-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 4rem; align-items: start; }
+.seo-intro-cta { margin-top: 1.5rem; }
+@media (max-width: 767px) { .seo-intro-cols { grid-template-columns: 1fr; } }
+`,
+          }}
+        />
+        <div className="padding-global">
+          <div className="w-layout-blockcontainer container-large w-container">
+            <h2 className="heading-style-h2">Digital Marketing Services</h2>
+            <div className="seo-intro-cols">
+              <p className="who-para left-align">
+                As a digital marketing company in India, we handle the full growth stack under one roof:{' '}
+                <a href="/growth-marketing-seo-content-services">SEO and content marketing</a>,{' '}
+                <a href="/paid-advertising">paid advertising and PPC</a>,{' '}
+                <a href="/social-media-marketing">social media marketing</a>,{' '}
+                <a href="/brand-visual-identity">branding and visual identity</a>,{' '}
+                <a href="/motion-animation">motion graphics</a>,{' '}
+                <a href="/photography-videography">video production</a>, and{' '}
+                <a href="/websites-ecommerce">website and e-commerce development</a> — coordinated by one team,
+                measured against one goal: qualified leads and revenue.
+              </p>
+              <div>
+                <p className="who-para left-align">
+                  We work with startups, D2C brands, SaaS companies, and established businesses across industries —
+                  from <a href="/healthcare-marketing">healthcare</a> and{' '}
+                  <a href="/real-estate-digital-marketing">real estate</a> to{' '}
+                  <a href="/hospitality-digital-marketing">hospitality</a>,{' '}
+                  <a href="/saas-digital-marketing">SaaS</a>, and{' '}
+                  <a href="/entertainment-digital-marketing">entertainment</a>.
+                </p>
+                <div className="seo-intro-cta">
+                  <a href="/contact-us" className="button new-w-arrow w-button">Book a Free Call</a>
                 </div>
               </div>
             </div>
@@ -221,7 +264,7 @@ export default function HomeContent() {
                     </div>
                   </div>
                 </div>
-                <img src="/images/our-solution.png" loading="lazy" sizes="(max-width: 767px) 100vw, (max-width: 991px) 728px, 761px" srcSet="/images/our-solution-p-500.png 500w, /images/our-solution.png 761w" alt="" className="header-image right-align" />
+                <img src="/images/our-solution.png" loading="lazy" sizes="(max-width: 767px) 100vw, (max-width: 991px) 728px, 761px" srcSet="/images/our-solution-p-500.png 500w, /images/our-solution.png 761w" alt="Our solutions — Marketing Mojito" className="header-image right-align" />
               </div>
               <div className="code-embed-7 w-embed w-script">
                 <style dangerouslySetInnerHTML={{ __html: `

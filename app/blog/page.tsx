@@ -2,7 +2,7 @@ import { getAllPosts } from '@/lib/blog';
 import BlogGrid from './BlogGrid';
 
 export const metadata = {
-  title: 'Mojito Labs - Marketing Mojito Blog',
+  title: 'Mojito Labs',
   description: 'Digital marketing insights, strategies, and tips from Marketing Mojito.',
   alternates: { canonical: 'https://marketingmojito.com/blog' },
 };
@@ -23,6 +23,7 @@ export default function BlogPage() {
   return (
     <div className="padding-global padding-section-nav">
       <div className="container-large w-container">
+        <h1 className="heading-style-h2">Mojito Labs</h1>
         <BlogGrid posts={cardPosts} />
       </div>
     </div>

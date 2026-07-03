@@ -28,3 +28,7 @@
 .blog-content figure {
   margin: 1.5rem 0;
 }
+
+/* Old WordPress uploads no longer exist on the server - hide dead in-article images
+   (incl. blogstest.marketingmojito.com) instead of showing broken-image icons. */
+.blog-content img[src*="/wp-content/"] { display: none; }

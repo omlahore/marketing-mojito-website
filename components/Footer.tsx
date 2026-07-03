@@ -134,7 +134,7 @@ export default function Footer() {
               <div className="footer_botton-wrapper">
                 <div className="footer_btn-links">
                   <div className="text-13">
-                    © 2022 Welcome. All right reserved.
+                    © 2026 Marketing Mojito. All rights reserved.
                   </div>
                   <div className="footer_links-small">
                     <Link href="/privacy-policy" className="text-13">

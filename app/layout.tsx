@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
+import OrganizationSchema from '@/components/OrganizationSchema';
 
 const siteUrl = 'https://marketingmojito.com';
 
@@ -46,6 +47,7 @@ export default function RootLayout({
   return (
     <html lang="en" data-wf-page="684a78bb344929502a0da7ec" data-wf-site="6821a11a1adb296fa1dad4b9">
       <body>
+        <OrganizationSchema />
         {children}
         {/* Google Analytics — same property as the static Webflow pages */}
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-78YMGG1L5M" strategy="afterInteractive" />

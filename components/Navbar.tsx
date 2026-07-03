@@ -218,6 +218,7 @@ const INDUSTRY_LINKS = [
   { href: '/saas-digital-marketing', label: 'SaaS' },
   { href: '/hospitality-digital-marketing', label: 'Hospitality' },
   { href: '/entertainment-digital-marketing', label: 'Entertainment' },
+  { href: '/celebrity-brand-marketing', label: 'Celebrity & Artists' },
 ];
 
 const KNOWLEDGE_CARDS: NavCard[] = [
@@ -346,8 +347,72 @@ export default function Navbar() {
       data-easing="ease"
       data-easing2="ease"
       role="banner"
-      className="navbar-no-shadow-container w-nav"
+      className="navbar-no-shadow-container w-nav mm-nav"
     >
+      {/* Megamenu UX polish — keeps Webflow's dropdown structure & JS fully
+          intact; only adds (1) a transparent bridge below an OPEN toggle so
+          moving the cursor down into the panel doesn't cross dead space and
+          close it, (2) a caret flip, (3) a soft fade. Scoped to .mm-nav so the
+          static Webflow pages are unaffected. */}
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+/* transparent hover bridge so moving the cursor into an open panel
+   doesn't cross dead space and close it */
+.mm-nav .nav-dropdown.w--open::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 28px;
+}
+
+/* caret flip on open */
+.mm-nav .nav-dropdown-toggle .image-10 { transition: transform .25s ease; }
+.mm-nav .nav-dropdown.w--open .image-10 { transform: rotate(180deg); }
+
+/* panel entrance — Webflow toggles display:none/block, which can't be
+   transitioned, so drive the open state with a keyframe instead */
+.mm-nav .nav-dropdown-list.w--open {
+  animation: mmDrop .22s cubic-bezier(.22,.61,.36,1) both;
+}
+@keyframes mmDrop {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* CONSISTENT HEIGHT: column-14 already pins 22.7rem for the Explore/
+   Knowledge/Get-Started panels; Solutions' tab area had no floor, so it
+   resized on every tab switch. Give it (and the Industries layout) the
+   same minimum so all panels and all tabs share one height. */
+.mm-nav .tabs-content { min-height: 22.7rem; }
+.mm-nav .industries-tab-content { min-height: 22.7rem; }
+
+/* crossfade between Solutions tabs */
+.mm-nav .w-tab-pane.w--tab-active { animation: mmPane .2s ease both; }
+@keyframes mmPane {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* smooth interactive states */
+.mm-nav .nav-dropdown-list { transition: opacity .2s ease, transform .2s ease; }
+.mm-nav .tab-link,
+.mm-nav .tab-btn,
+.mm-nav .sol-inner { transition: background-color .2s ease, color .2s ease, transform .15s ease; }
+.mm-nav .tab-link .image-14 { transition: transform .2s ease; }
+.mm-nav .tab-link.w--current .image-14 { transform: translateX(3px); }
+.mm-nav .tab-btn:hover { transform: translateX(2px); }
+
+/* respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .mm-nav .nav-dropdown-list.w--open,
+  .mm-nav .w-tab-pane.w--tab-active { animation: none; }
+}
+`,
+        }}
+      />
       <div className="custome-container logo-container">
         <div className="navbar-wrapper-2">
           {/* Logo */}
@@ -368,7 +433,7 @@ export default function Navbar() {
             <ul role="list" className="nav-menu mynav w-list-unstyled">
               {/* ── Explore ── */}
               <li>
-                <div data-delay="0" data-hover="true" className="nav-dropdown w-dropdown">
+                <div data-delay="250" data-hover="true" className="nav-dropdown w-dropdown">
                   <div className="nav-dropdown-toggle w-dropdown-toggle">
                     <div className="nav-link-text">Explore</div>
                     <img loading="lazy" src="/images/icon.svg" alt="" className="image-10" />
@@ -376,8 +441,8 @@ export default function Navbar() {
                   <nav className="nav-dropdown-list shadow-three mobile-shadow-hide w-dropdown-list">
                     <div className="block">
                       <div className="w-row">
-                        <div className="column-9 w-col w-col-4 w-col-stack w-col-small-small-stack">
-                          <div className="tab_btn-wrapper">
+                        <div className="column-9 w-col w-col-5 w-col-stack">
+                          <div className="tab_btn-wrapper _1">
                             {EXPLORE_CARDS.map((card, i) => (
                               <div
                                 key={card.href}
@@ -388,7 +453,7 @@ export default function Navbar() {
                             ))}
                           </div>
                         </div>
-                        <div className="column-14 w-col w-col-8 w-col-stack w-col-small-small-stack">
+                        <div className="column-14 w-col w-col-7 w-col-stack">
                           <div
                             className={`tab-answer _${activeExploreCard + 1}`}
                             style={{ display: 'block' }}
@@ -404,7 +469,7 @@ export default function Navbar() {
 
               {/* ── Solutions ── */}
               <li>
-                <div data-delay="0" data-hover="true" className="nav-dropdown w-dropdown">
+                <div data-delay="250" data-hover="true" className="nav-dropdown w-dropdown">
                   <div className="nav-dropdown-toggle w-dropdown-toggle">
                     <div className="nav-link-text">Solutions</div>
                     <img loading="lazy" src="/images/icon.svg" alt="" className="image-10" />
@@ -473,18 +538,17 @@ export default function Navbar() {
                                   ) : (
                                     /* Service cards + sub-services */
                                     <div className="w-row">
-                                      <div
-                                        className={`column-9 w-col w-col-${tab.cards.length > 2 ? '8' : '7'}`}
-                                      >
+                                      {/* Fixed column split for every tab so the
+                                          card/sub-service columns don't change
+                                          width when switching tabs. */}
+                                      <div className="column-9 w-col w-col-8">
                                         <div className="tab_btn-wrapper">
                                           {tab.cards.map((card) => (
                                             <NavCardLink key={card.href} card={card} />
                                           ))}
                                         </div>
                                       </div>
-                                      <div
-                                        className={`column-14 w-col w-col-${tab.cards.length > 2 ? '4' : '5'}`}
-                                      >
+                                      <div className="column-14 w-col w-col-4">
                                         {tab.subServices?.map((group, gi) => (
                                           <div
                                             key={gi}
@@ -540,7 +604,7 @@ export default function Navbar() {
 
               {/* ── Knowledge Hub ── */}
               <li>
-                <div data-delay="0" data-hover="true" className="nav-dropdown w-dropdown">
+                <div data-delay="250" data-hover="true" className="nav-dropdown w-dropdown">
                   <div className="nav-dropdown-toggle w-dropdown-toggle">
                     <div className="nav-link-text">Knowledge hub</div>
                     <img loading="lazy" src="/images/icon.svg" alt="" className="image-10" />
@@ -585,7 +649,7 @@ export default function Navbar() {
 
               {/* ── Get Started ── */}
               <li>
-                <div data-delay="0" data-hover="true" className="nav-dropdown w-dropdown">
+                <div data-delay="250" data-hover="true" className="nav-dropdown w-dropdown">
                   <div className="nav-dropdown-toggle w-dropdown-toggle">
                     <div className="nav-link-text">Get Started</div>
                     <img loading="lazy" src="/images/icon.svg" alt="" className="image-10" />

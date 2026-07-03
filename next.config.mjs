@@ -8,13 +8,17 @@ const htmlPages = [
   'viral-content-shorts-page', 'e-commerce-digital-marketing', 'healthcare-marketing',
   'real-estate-digital-marketing', 'saas-digital-marketing', 'hospitality-digital-marketing',
   'entertainment-digital-marketing', 'privacy-policy',
-  'terms-of-service', 'mojito-labs',
+  'terms-of-service', 'mojito-labs', 'portfolio',
 ];
 
 // Next.js runs redirects before rewrites and before matching files in /public.
 // /free-templates and /free-tools are App Router only — not in htmlPages (no rewrites to *.html).
 const redirects = [
   { source: '/index.html', destination: '/', permanent: true },
+  // Stale WordPress-era URLs still in Google's index
+  { source: '/about', destination: '/about-us', permanent: true },
+  { source: '/new-home-page', destination: '/', permanent: true },
+  { source: '/project', destination: '/portfolio', permanent: true },
   { source: '/free-tools-and-template', destination: '/free-templates', statusCode: 301 },
   { source: '/free-tools-and-template.html', destination: '/free-templates', statusCode: 301 },
   ...htmlPages.map((p) => ({ source: `/${p}.html`, destination: `/${p}`, permanent: true })),

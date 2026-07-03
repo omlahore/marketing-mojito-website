@@ -1,0 +1,29 @@
+/*
+ * Mobile fixes for phone-width viewports (<=767px).
+ *
+ * Root causes fixed here:
+ * 1. The Webflow export sets `white-space: nowrap` on the big section labels
+ *    (.hero_header-left "Who We Are", .hero_header-left-2 "OUR SOLUTIONS",
+ *    .cards_text-left "PORTFOLIO"). On desktop they fit on one line; at phone
+ *    widths the unwrappable line is wider than the screen, which both overflows
+ *    the viewport and (because parents center their children) shifts the whole
+ *    block to negative x.
+ * 2. IX2 scroll-parallax slides the PORTFOLIO / CLIENT SUCCESS labels ±100px
+ *    horizontally as you scroll. Fine on desktop; at phone widths it pushes the
+ *    text off-screen. The transforms are inline styles, hence !important.
+ */
+@media screen and (max-width: 767px) {
+  .hero_header-left,
+  .hero_header-left-2,
+  .cards_text-left,
+  .heading-style-h2 {
+    white-space: normal;
+  }
+
+  .cards_text-left,
+  .cards_text-right,
+  .testimonial_text-left,
+  .testimonial_text-right {
+    transform: none !important;
+  }
+}
