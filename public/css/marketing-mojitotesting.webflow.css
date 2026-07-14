@@ -19719,3 +19719,25 @@ h2 {
 .heading-style-h4            { font-size: 2rem   !important; line-height: 1.3 !important; }
 .heading-style-h5            { font-size: 1.5rem !important; line-height: 1.4 !important; }
 .heading-style-h6            { font-size: 1.25rem!important; line-height: 1.4 !important; }
+
+/* Remove the circular arrow icon from all arrow buttons (.new-w-arrow / .new-b-arrow).
+   Drops the icon.png / arrow-circle background layer and re-centers the label by
+   normalizing the right padding that made room for it. Overrides every scattered
+   base/hover/responsive rule above in one place. */
+.button.new-w-arrow,
+.button.new-w-arrow.our-solution,
+.button.new-w-arrow.see-all-project,
+.button.new-w-arrow.contact-us-button {
+  background-image: linear-gradient(45deg, #82c341, #09ce91) !important;
+  background-position: 0 0 !important;
+  padding-right: 1.6rem !important;
+  padding-left: 1.6rem !important;
+}
+.button.new-w-arrow:hover,
+.button.new-w-arrow.contact-us-button.new:hover {
+  background-image: none !important;
+}
+.button.new-b-arrow {
+  background-image: none !important;
+  padding-right: 1.6rem !important;
+}
