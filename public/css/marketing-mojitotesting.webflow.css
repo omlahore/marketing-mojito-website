@@ -19730,6 +19730,8 @@ h2 {
 .button.new-w-arrow.contact-us-button {
   background-image: linear-gradient(45deg, #82c341, #09ce91) !important;
   background-position: 0 0 !important;
+  background-size: auto !important;
+  background-repeat: repeat !important;
   padding-right: 1.6rem !important;
   padding-left: 1.6rem !important;
 }
