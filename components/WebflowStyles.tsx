@@ -22,7 +22,7 @@ export default function WebflowStyles() {
       <link href="/css/mobile-fixes.css?v=20260717" rel="stylesheet" />
       {/* Design tokens — single source of truth for type/buttons/layout. Loads last. */}
       {/* eslint-disable-next-line @next/next/no-css-tags */}
-      <link href="/css/mm-tokens.css?v=20260717q" rel="stylesheet" />
+      <link href="/css/mm-tokens.css?v=20260717r" rel="stylesheet" />
 
       {/* Fonts */}
       <link href="https://fonts.googleapis.com" rel="preconnect" />

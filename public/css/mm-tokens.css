@@ -372,6 +372,21 @@ html .k-main-wrapper.orange {
   min-height: 0 !important;
 }
 .loop_text-wrapper { align-items: center; padding: 0 !important; }
+/* Logo marquee images: CLS width/height attrs must never stretch — the box
+   comes from .brand_logo, the image fits inside it. */
+.brand_logo img, .loop_band img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain;
+}
+/* Section illustrations: intrinsically tall art must not consume a viewport. */
+.header-image {
+  max-height: 520px;
+  width: auto;
+  object-fit: contain;
+}
+/* Never let CLS dimension attrs override responsive layout. */
+img[width][height] { max-width: 100%; }
 /* Nested padding wrappers double the rhythm (e.g. .section-faq > .padding-section-small
    = 180px). The OUTER section owns the padding; inner wrappers contribute none. */
 .section-faq [class*="padding-section"],
