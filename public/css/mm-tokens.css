@@ -1,0 +1,405 @@
+/*
+ * mm-tokens.css — Marketing Mojito design system. THE single source of truth.
+ *
+ * Loaded LAST on every page (all 35 static Webflow exports + all React pages),
+ * after webflow.css / page embeds / mobile-fixes, so its rules win the cascade.
+ * Nothing outside this file may declare: font sizes, button styles, gradients,
+ * container widths, or section padding. If a page needs one of those, it uses
+ * these tokens.
+ *
+ * Approved spec (design audit 2026-07-17):
+ *   canonical button  = navbar gradient 45deg #82C341 -> #09CE91
+ *   exactly 2 buttons = PRIMARY (gradient) / SECONDARY (outline)
+ *   exactly 2 grads   = --mm-grad (green 45deg) / --mm-grad-cta (yellow 135deg)
+ *   one container     = 1280px
+ *   one type ramp     = H1 56 / H2 40 / H3 26 / lead 20 / body 16 / small 14
+ *   motion            = content visible by default; animation only adds.
+ */
+
+:root {
+  /* ---- color ---- */
+  --mm-green: #82c341;
+  --mm-teal: #09ce91;
+  --mm-grad: linear-gradient(45deg, var(--mm-green), var(--mm-teal));
+  --mm-yellow: #fdb913;
+  --mm-grad-cta: linear-gradient(135deg, #fdb913 0%, #f5a623 100%);
+  --mm-ink: #1c1c1c;
+  --mm-ink-soft: #4a4a4a;
+  --mm-surface: #ffffff;
+  --mm-surface-2: #eef7e8;
+
+  /* Webflow's second yellow (--orange #fdc934) is retired: one yellow. */
+  --orange: #fdb913;
+
+  /* ---- type ---- */
+  --mm-font-display: 'Unbounded', sans-serif;
+  --mm-font-body: 'Poppins', sans-serif;
+  --mm-h1: clamp(40px, 4.2vw, 56px);
+  --mm-h2: clamp(28px, 3vw, 40px);
+  --mm-h3: clamp(20px, 2vw, 26px);
+  --mm-h4: clamp(17px, 1.5vw, 20px);
+  --mm-lead: clamp(17px, 1.4vw, 20px);
+  --mm-body: 16px;
+  --mm-small: 14px;
+
+  /* ---- layout ---- */
+  --mm-container: 1280px;
+  --mm-pad-x: clamp(20px, 4vw, 48px);
+  --mm-sec: clamp(56px, 7vw, 104px);
+  --mm-sec-tight: clamp(32px, 4vw, 56px);
+
+  /* ---- radius ---- */
+  --mm-r-btn: 12px;
+  --mm-r-card: 16px;
+  --mm-r-pill: 999px;
+
+  /* ---- motion ---- */
+  --mm-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* ============================================================
+   1 · ROOT FIX — the vw font-size hack dies here (F2).
+   Every page embed sets html{font-size:*vw}; this wins (loads last).
+   Same rem = same px on every page at every width.
+   ============================================================ */
+html {
+  font-size: 16px !important;
+}
+
+/* ============================================================
+   2 · TYPE RAMP (F5, F6) — one ladder, every page, every width.
+   Class lists cover the Webflow export's heading/body aliases.
+   ============================================================ */
+h1, .heading-style-h1, .inner-banner-heading, .inner-banner-heading-gradient, .banner-title {
+  font-family: var(--mm-font-display) !important;
+  font-size: var(--mm-h1) !important;
+  line-height: 1.1 !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.02em !important;
+  text-wrap: balance;
+}
+h2, .heading-style-h2, .main-heading-style-h3, .cta-yellow-heading {
+  font-family: var(--mm-font-display) !important;
+  font-size: var(--mm-h2) !important;
+  line-height: 1.16 !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.015em !important;
+  text-wrap: balance;
+}
+h3, .heading-style-h3 {
+  font-family: var(--mm-font-display) !important;
+  font-size: var(--mm-h3) !important;
+  line-height: 1.22 !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
+  text-wrap: balance;
+}
+h4, .heading-style-h4, .heading-12, .heading-6, .heading-7, .box-title-wrapper h4 {
+  font-family: var(--mm-font-display) !important;
+  font-size: var(--mm-h4) !important;
+  line-height: 1.3 !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+}
+/* Hero H1 on the homepage keeps its two-line composition, same ramp. */
+.heading-style-h1 .text-block-53,
+.heading-style-h1 .text-block-54 {
+  font-size: var(--mm-h1) !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.02em !important;
+}
+
+/* Lead paragraph — kills the stray 24px body copy (was .main-subtitle etc). */
+.main-subtitle, .banner-subtitle, .city-hero-sub {
+  font-family: var(--mm-font-body) !important;
+  font-size: var(--mm-lead) !important;
+  line-height: 1.6 !important;
+  font-weight: 400 !important;
+}
+
+/* Body copy — one size, always Poppins (evicts Unbounded from paragraphs). */
+p, .who-para, .who-para.left-align, .hero_header-para, .our-sol-para,
+.cards_text-para, .text-48, .portfolio-para, .cta-info-para, .paragraph-4,
+.page-name, .text-18, .flex-body, .article-title, .client-des, .box-para,
+.faq-para, .text-size-medium, .text-size-regular, .content-box a {
+  font-family: var(--mm-font-body) !important;
+  font-size: var(--mm-body) !important;
+  line-height: 1.65 !important;
+}
+.text-14, .text-13, .text-size-small, .brand-option div, .heading {
+  font-family: var(--mm-font-body) !important;
+  font-size: var(--mm-small) !important;
+  line-height: 1.5 !important;
+}
+/* FAQ questions are body UI, not display type. */
+.faq_question div, .text-size-regular.text-weight-bold {
+  font-family: var(--mm-font-body) !important;
+  font-size: var(--mm-body) !important;
+  font-weight: 600 !important;
+}
+/* Marquee ticker stays a quiet band. */
+.loop-service-text {
+  font-size: clamp(13px, 1vw + 9px, 22px) !important;
+  letter-spacing: 0.04em !important;
+}
+
+/* The "random grey" 50%-opacity copy (F7): readable ink, everywhere. */
+.paragraph-3 {
+  color: var(--mm-ink-soft) !important;
+}
+
+/* ============================================================
+   3 · BUTTONS (F3) — exactly two. PRIMARY is the navbar button.
+   Blanket covers every signature found in the audit:
+   .w-button (button/large-btn/primary-btn/blog-card-btn/button-5/
+   project-btn/cta variants), .solid-button-wrapper, .brand_button-double,
+   .button-brand, form submits, and the Google Calendar embed (.qxCTlb).
+   ============================================================ */
+.w-button,
+.button,
+.solid-button-wrapper,
+.brand_button-double,
+.button-brand,
+.hero-banner-btn,
+.caps-btn,
+.case-btn,
+.get-tool,
+.blog-card-btn,
+.view-apply-btn,
+.tool-btn,
+[id^="tool-button"],
+input[type="submit"],
+form button:not([class]),
+button.qxCTlb {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 48px !important;
+  padding: 0.7rem 1.6rem !important;
+  background-color: transparent;
+  background-image: var(--mm-grad) !important;
+  color: #fff !important;
+  font-family: var(--mm-font-body) !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  line-height: 1.1 !important;
+  letter-spacing: 0 !important;
+  text-decoration: none !important;
+  text-transform: none !important;
+  border: 0 !important;
+  border-radius: var(--mm-r-btn) !important;
+  cursor: pointer;
+  transition: transform 0.15s var(--mm-ease), filter 0.15s var(--mm-ease),
+    box-shadow 0.15s var(--mm-ease);
+}
+/* The canonical navbar button keeps its arrow icon layer. */
+.button.new-w-arrow {
+  background-image: url('/images/icon.png'), var(--mm-grad) !important;
+  background-repeat: no-repeat, repeat !important;
+  background-position: right 1.1rem center, 0 0 !important;
+  background-size: 14px, auto !important;
+  padding-right: 2.6rem !important;
+}
+
+/* SECONDARY — outline twin, same box. Opt-in classes only. */
+.text-btn,
+.mm-btn-secondary {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 48px !important;
+  padding: 0.7rem 1.6rem !important;
+  background: transparent !important;
+  color: var(--mm-green) !important;
+  font-family: var(--mm-font-body) !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  line-height: 1.1 !important;
+  text-decoration: none !important;
+  border: 1.5px solid var(--mm-green) !important;
+  border-radius: var(--mm-r-btn) !important;
+  cursor: pointer;
+  transition: transform 0.15s var(--mm-ease), background-color 0.15s var(--mm-ease),
+    color 0.15s var(--mm-ease);
+}
+.text-btn.black-text { color: var(--mm-ink) !important; border-color: var(--mm-ink) !important; }
+
+/* One hover/press/focus language for both (F12). */
+.w-button:hover, .button:hover, .solid-button-wrapper:hover,
+.brand_button-double:hover, .button-brand:hover, .hero-banner-btn:hover,
+input[type="submit"]:hover, button.qxCTlb:hover, [id^="tool-button"]:hover, .case-btn:hover, .get-tool:hover, .text-btn:hover, .mm-btn-secondary:hover {
+  transform: translateY(-2px);
+  filter: saturate(1.08) brightness(1.03);
+}
+.w-button:active, .button:active, .solid-button-wrapper:active,
+.brand_button-double:active, .button-brand:active, .hero-banner-btn:active,
+input[type="submit"]:active, button.qxCTlb:active, [id^="tool-button"]:active, .case-btn:active, .get-tool:active, .text-btn:active, .mm-btn-secondary:active {
+  transform: translateY(0);
+  filter: saturate(1) brightness(0.98);
+}
+.w-button:focus-visible, .button:focus-visible, .solid-button-wrapper:focus-visible,
+.brand_button-double:focus-visible, .button-brand:focus-visible,
+input[type="submit"]:focus-visible, button.qxCTlb:focus-visible,
+.text-btn:focus-visible, .mm-btn-secondary:focus-visible {
+  outline: 2px solid var(--mm-teal);
+  outline-offset: 2px;
+}
+
+/* Navbar text tabs are NOT buttons — undo the blanket if they carry w-button. */
+.tab-btn, .nav-link-text {
+  background-image: none !important;
+  min-height: 0 !important;
+}
+
+/* Google Calendar embeds ship inside decorative wrappers (.outline-btn white box
+   with green border, .button2 beige fill). The button IS the primary button now —
+   its wrappers must disappear. */
+.outline-btn:has(.qxCTlb) {
+  border: 0 !important;
+  background: transparent !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+.button2:has(.qxCTlb) {
+  background: transparent !important;
+  padding: 0 !important;
+}
+/* Stray calendar glyph duplicating the secondary button's meaning.
+   (html prefix: body-embedded <style> blocks come later in source order,
+   so token rules need the extra specificity to win at equal importance.) */
+html .outline-btn:has(.text-btn) img,
+html .outline-btn:has(.text-btn) > svg {
+  display: none !important;
+}
+
+/* Per-card accent borders (green / orange / teal per card) read as accidents — one border. */
+html .k-main-wrapper,
+html .k-main-wrapper.green,
+html .k-main-wrapper.orange {
+  border-color: var(--mm-green) !important;
+}
+
+/* ============================================================
+   4 · FORCE-VISIBLE + ONE ENTRANCE (F1, F12).
+   IX2 initial states ship as inline opacity:0; if the trigger
+   misfires the content stays invisible forever. Content is now
+   visible by default — the entrance below only ADDS motion.
+   (Anchored selectors so opacity:0.5 etc is untouched.)
+   ============================================================ */
+[data-w-id][style*="opacity:0;"], [data-w-id][style*="opacity: 0;"],
+[data-w-id][style$="opacity:0"], [data-w-id][style$="opacity: 0"],
+[data-w-id][style*="blur(5px)"],
+.about-cards, .new-box, .startup_brand-block-2 {
+  opacity: 1 !important;
+  filter: none !important;
+}
+.about-cards, .new-box, .startup_brand-block-2,
+.hero_text-wrapper, .cards_text-left, .cards_text-right,
+.testimonial_text-left, .testimonial_text-right {
+  animation: mm-rise 0.55s var(--mm-ease) both;
+}
+@keyframes mm-rise {
+  from { transform: translateY(12px); }
+  to { transform: none; }
+}
+
+/* ============================================================
+   5 · CONTAINER (F10) — one width. Marquees stay full-bleed.
+   ============================================================ */
+.container-large, .container-medium, .container-small,
+.w-layout-blockcontainer, .w-container {
+  max-width: min(var(--mm-container), 100%) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.padding-global {
+  padding-left: var(--mm-pad-x) !important;
+  padding-right: var(--mm-pad-x) !important;
+}
+
+/* ============================================================
+   6 · SECTION RHYTHM (F11) — one vertical scale.
+   ============================================================ */
+[class*="padding-section"],
+.section-who-we-are, .seo-intro-section, .section_gallery-text,
+.feedback, .section_testimonials, .section-agency, .team,
+.section-faq, .section-brand {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: var(--mm-sec) !important;
+  padding-bottom: var(--mm-sec) !important;
+}
+.section_loop-text, .section_loop-brands, .section_loop-intro {
+  padding-top: var(--mm-sec-tight) !important;
+  padding-bottom: var(--mm-sec-tight) !important;
+}
+/* Nested padding wrappers double the rhythm (e.g. .section-faq > .padding-section-small
+   = 180px). The OUTER section owns the padding; inner wrappers contribute none. */
+.section-faq [class*="padding-section"],
+.section-agency [class*="padding-section"],
+.section-brand [class*="padding-section"],
+.team [class*="padding-section"],
+[class*="padding-section"] [class*="padding-section"] {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* ============================================================
+   7 · PROSE — the bare SEO/FAQ text blocks (F8) get one style.
+   ============================================================ */
+.section-agency .w-richtext, .section-agency .container-large {
+  max-width: min(var(--mm-container), 100%);
+}
+.section-agency p, .section-agency li {
+  font-family: var(--mm-font-body) !important;
+  font-size: var(--mm-body) !important;
+  line-height: 1.7 !important;
+  max-width: 70ch;
+}
+.section-agency ul, .section-agency ol {
+  padding-left: 1.4rem;
+  margin: 0.6rem 0 1.1rem;
+}
+.section-agency ul li::marker { color: var(--mm-green); }
+.section-agency h2 { margin-bottom: 0.6em; }
+.section-agency h3, .section-agency h4 { margin: 1.4em 0 0.45em; }
+/* Semantic tag wins over Webflow class aliases (e.g. <h2 class="heading-style-h4">):
+   hierarchy follows the HTML outline, everywhere. */
+h1.heading-style-h2, h1.heading-style-h3, h1.heading-style-h4,
+h1.main-heading-style-h3, h1.cta-yellow-heading { font-size: var(--mm-h1) !important; }
+h2.heading-style-h3, h2.heading-style-h4 { font-size: var(--mm-h2) !important; }
+h3.heading-style-h4, h3.heading-style-h2, h3.heading-style-h1 { font-size: var(--mm-h3) !important; }
+
+/* ============================================================
+   8 · CARDS & TILES (F9) — equal heights are structural.
+   ============================================================ */
+.grid-2, .grid-3, .w-layout-grid {
+  align-items: stretch;
+}
+.social-platform-card {
+  height: 100% !important;
+  background: var(--mm-surface-2) !important;
+  background-image: none !important;
+  border-radius: var(--mm-r-card) !important;
+}
+.timeline-items > div, .startup_brand-block-2 { height: auto; }
+.client-card {
+  border-radius: var(--mm-r-card);
+  break-inside: avoid;
+}
+
+/* ============================================================
+   9 · REDUCED MOTION — every animation has an off switch.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .about-cards, .new-box, .startup_brand-block-2,
+  .hero_text-wrapper, .cards_text-left, .cards_text-right,
+  .testimonial_text-left, .testimonial_text-right {
+    animation: none !important;
+  }
+  .w-button, .button, .solid-button-wrapper, .brand_button-double,
+  .button-brand, input[type="submit"], button.qxCTlb, .text-btn, .mm-btn-secondary {
+    transition: none !important;
+  }
+  .w-button:hover, .button:hover, .text-btn:hover { transform: none; }
+}

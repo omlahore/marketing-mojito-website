@@ -19,7 +19,10 @@ export default function WebflowStyles() {
       {/* eslint-disable-next-line @next/next/no-css-tags */}
       <link href="/css/mobile-dock.css" rel="stylesheet" />
       {/* eslint-disable-next-line @next/next/no-css-tags */}
-      <link href="/css/mobile-fixes.css" rel="stylesheet" />
+      <link href="/css/mobile-fixes.css?v=20260717" rel="stylesheet" />
+      {/* Design tokens — single source of truth for type/buttons/layout. Loads last. */}
+      {/* eslint-disable-next-line @next/next/no-css-tags */}
+      <link href="/css/mm-tokens.css?v=20260717k" rel="stylesheet" />
 
       {/* Fonts */}
       <link href="https://fonts.googleapis.com" rel="preconnect" />
@@ -46,18 +49,8 @@ export default function WebflowStyles() {
     outline: 0;
 }
 
-/* Responsive font sizing */
-@media only screen and (max-width: 1440px) {
-  html { font-size: 1.1111111111vw; }
-}
-@media only screen and (max-width: 991px) {
-  html { font-size: 1.614530777vw; }
-}
-@media only screen and (max-width: 767px) {
-  html { font-size: 2.08604954368vw; }
-}
+/* Root font size is fixed by mm-tokens.css (the vw hack is retired). */
 @media only screen and (max-width: 479px) {
-  html { font-size: 4.2666666667vw; }
   .w-nav[data-collapse='medium'] .w-nav-button { display: none; }
 }
 
@@ -100,6 +93,85 @@ a, .w-input, .w-select, .w-tab-link, .w-nav-link,
   .navbar-no-shadow-container {
     display: none !important;
   }
+}
+
+/* Type system lives in mm-tokens.css — no font sizes here. */
+
+/* ============================================================
+   CENTER ALIGNMENT — Who We Are & Our Solutions
+   ============================================================ */
+@media (max-width: 991px) {
+  /* Stack + center the whole Who We Are / Our Solutions blocks */
+  .section-who-we-are .hero_header-wrapper,
+  .section_gallery-text .hero_header-wrapper {
+    flex-direction: column !important; align-items: center !important; text-align: center !important;
+  }
+  /* The heading/copy wrappers shrink-wrap and sit off to one side — force full width */
+  .section-who-we-are .hero_header-text,
+  .section-who-we-are .hero_header-left,
+  .section-who-we-are .hero_header-right,
+  .section-who-we-are .hero_header-para,
+  .section_gallery-text .hero_header-text,
+  .section_gallery-text .hero_header-left,
+  .section_gallery-text .hero_header-right,
+  .section_gallery-text .hero_header-para {
+    width: 100% !important; max-width: 100% !important; text-align: center !important;
+  }
+  .section-who-we-are .heading-style-h2,
+  .section-who-we-are .who-para,
+  .section_gallery-text .heading-style-h2,
+  .section_gallery-text .who-para,
+  .section_gallery-text .heading-12 { width: 100% !important; display: block !important; text-align: center !important; }
+
+  /* Our Solutions uses a different, right-aligned flex wrapper — neutralize it */
+  .section_gallery-text .gallery_text-wrapper,
+  .section_gallery-text .gallery_text-wrapper.right-align,
+  .section_gallery-text .galler-wrapper {
+    flex-direction: column !important; justify-content: center !important; align-items: center !important; text-align: center !important;
+  }
+  .section_gallery-text .hero_header-left-2,
+  .section_gallery-text .hero_header-right-2,
+  .section_gallery-text .hero_header-right--2 {
+    width: 100% !important; max-width: 100% !important; text-align: center !important;
+  }
+  /* This subtitle carries its own text-align:right — force it centered */
+  .section_gallery-text .our-sol-para { text-align: center !important; }
+
+  /* Center both section images (books, lightbulb-in-hand) — override .left-align / .right-align */
+  .section-who-we-are .header-image,
+  .section-who-we-are .header-image.left-align,
+  .section_gallery-text .header-image,
+  .section_gallery-text .header-image.right-align {
+    margin-left: auto !important; margin-right: auto !important; display: block !important; float: none !important;
+  }
+
+  /* Center every CTA button in these sections (About Us, Book A Free Call, Checkout Our Work) */
+  .section-who-we-are .hero_header-list,
+  .section_gallery-text .hero_header-list {
+    display: flex !important; justify-content: center !important; align-items: center !important;
+  }
+  .seo-intro-cta { text-align: center !important; }
+
+  /* Solutions cards: icon on top, title centered, and the accordion arrow pinned to a
+     single consistent right-hand column (was scattering by title length). */
+  .section_gallery-text .new-box,
+  .section_gallery-text .content-box-wrapper,
+  .section_gallery-text .content-box { text-align: center !important; align-items: center !important; }
+  .section_gallery-text .web-box-icons { margin-left: auto !important; margin-right: auto !important; display: block !important; }
+  .section_gallery-text .box-title-wrapper {
+    position: relative !important; justify-content: center !important;
+    padding-left: 40px !important; padding-right: 40px !important;
+  }
+  .section_gallery-text .arrow-icon {
+    position: absolute !important; right: 12px !important; top: 50% !important;
+    transform: translateY(-50%) !important; margin: 0 !important;
+  }
+  .section_gallery-text .add-left-space { padding-left: 0 !important; margin-left: 0 !important; }
+
+  /* Self-audit CTA button was oversized — bring it in line with the type scale */
+  .custom-form-wrapper button,
+  .custom-form-wrapper form button,
+  .custom-form-wrapper input[type="submit"] { font-size: 16px !important; line-height: 1.2 !important; }
 }
 `,
         }}

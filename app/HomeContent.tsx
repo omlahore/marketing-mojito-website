@@ -1098,25 +1098,7 @@ export default function HomeContent() {
           <img loading="lazy" src="/images/whatsapp.svg" alt="" className="whatsapp-icon" />
         </a>
       </div>
-      <style dangerouslySetInnerHTML={{ __html: `
-@media screen and (max-width: 480px) {
- .who-para{
-   overflow: hidden;
-   display: -webkit-box;
-   -webkit-line-clamp: 2; /* number of lines to show */
-           line-clamp: 2; 
-   -webkit-box-orient: vertical;
-}
-.our-sol-para
-{
-   overflow: hidden;
-   display: -webkit-box;
-   -webkit-line-clamp: 2; /* number of lines to show */
-           line-clamp: 2; 
-   -webkit-box-orient: vertical;
-}
-}
-` }} />
+      {/* Mobile line-clamp removed: it hid the SEO copy and its internal links on phones. */}
     </>
   );
 }

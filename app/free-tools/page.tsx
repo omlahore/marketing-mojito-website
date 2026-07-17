@@ -87,7 +87,7 @@ export default function FreeToolsPage() {
 @media (max-width:600px){ .tools-grid{ grid-template-columns:1fr; } }
 .tool-card { background:#fff; border-radius:16px; padding:2rem 1.75rem; display:flex; flex-direction:column; box-shadow:0 6px 24px rgba(53,53,53,.08); transition:transform .2s, box-shadow .2s; }
 .tool-card:hover { transform:translateY(-4px); box-shadow:0 14px 32px rgba(53,53,53,.14); }
-.tool-ico { width:56px; height:56px; border-radius:14px; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg,#82c341,#09ce91); margin-bottom:1.25rem; }
+.tool-ico { width:56px; height:56px; border-radius:14px; display:flex; align-items:center; justify-content:center; background:linear-gradient(45deg,#82c341,#09ce91); margin-bottom:1.25rem; }
 .tool-ico svg { width:28px; height:28px; stroke:#fff; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
 .tool-card h4 { font-family:Unbounded,sans-serif; font-size:1.05rem; font-weight:500; color:#353535; margin:0 0 .6rem; line-height:1.3; }
 .tool-card p { font-family:Poppins,sans-serif; font-size:.9rem; line-height:1.6; color:#474747; margin:0 0 1.5rem; flex:1; }

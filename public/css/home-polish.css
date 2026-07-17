@@ -1,0 +1,195 @@
+/*
+ * home-polish.css — homepage elevation layer.
+ *
+ * Scoped entirely under `.mm-home` (set on the PageShell body wrapper for the
+ * homepage only), so it NEVER affects the 35 legacy Webflow pages. It does not
+ * change structure, colours, imagery, or copy — it only imposes consistency on
+ * the existing markup: one type ramp, one spacing rhythm, one alignment edge,
+ * one entrance animation. Uses `!important` + the `.mm-home` scope so it wins
+ * over both the Webflow desktop CSS and the global mobile-fixes clamps, giving
+ * the homepage a single source of truth for these four axes.
+ */
+
+.mm-home {
+  --font-display: 'Unbounded', sans-serif;
+  --font-body: 'Poppins', sans-serif;
+
+  /* Type ramp — fluid, continuous from 320px to desktop. One ladder, no drift. */
+  --t-h1: clamp(2.75rem, 5.4vw, 5rem);
+  --t-h2: clamp(1.9rem, 3.6vw, 3rem);
+  --t-h3: clamp(1.4rem, 2.4vw, 2.15rem);
+  --t-sub: clamp(1.05rem, 0.6vw + 0.9rem, 1.3rem);
+  --t-body: clamp(1rem, 0.35vw + 0.92rem, 1.125rem);
+  --t-small: clamp(0.85rem, 0.2vw + 0.8rem, 0.95rem);
+
+  /* Line-height + tracking, tightened for display, opened for reading. */
+  --lh-display: 1.08;
+  --lh-h3: 1.18;
+  --lh-body: 1.7;
+
+  /* Spacing rhythm — every content section uses this vertical padding. */
+  --sec-pad: clamp(56px, 8vw, 120px);
+  --sec-pad-tight: clamp(36px, 5vw, 72px);
+  --pad-x: clamp(20px, 5vw, 64px);
+
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* ────────────────────────────────────────────────────────────
+   1 · TYPE RAMP — applied to every heading/body class on the page
+   ──────────────────────────────────────────────────────────── */
+/* HERO — bespoke, NOT on the ramp. The hero sits on a fixed background
+   illustration (.hero_wrapper, Header-image-mm-website.png) with a small clear
+   zone up top. The visible text lives in two child divs. Sized so:
+   · desktop stays at the original 3rem (48px) — that composition was already fine;
+   · mobile bumps to 2rem (32px) so the hero beats the 30px H2s (the actual bug),
+     while each phrase still fits one line and the block stays in the clear zone.
+   Verify against a real screenshot; if the copy wraps or touches the limes,
+   dial the clamp min down (2rem → 1.8rem). */
+.mm-home .heading-style-h1 .text-block-53,
+.mm-home .heading-style-h1 .text-block-54 {
+  font-size: clamp(2rem, 6.5vw, 3rem) !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.02em !important;
+}
+.mm-home .heading-style-h2 {
+  font-family: var(--font-display) !important;
+  font-size: var(--t-h2) !important;
+  line-height: var(--lh-display) !important;
+  letter-spacing: -0.015em !important;
+  font-weight: 500 !important;
+}
+.mm-home .heading-style-h3,
+.mm-home .heading-style-h4 {
+  font-family: var(--font-display) !important;
+  font-size: var(--t-h3) !important;
+  line-height: var(--lh-h3) !important;
+  letter-spacing: -0.01em !important;
+  font-weight: 500 !important;
+}
+
+/* Body / paragraph copy — Poppins, consistent measure + rhythm.
+   (banner-subtitle is excluded — it belongs to the tuned hero composition.) */
+.mm-home .who-para,
+.mm-home .our-sol-para,
+.mm-home .cards_text-para,
+.mm-home .text-48,
+.mm-home .client-des,
+.mm-home .portfolio-para,
+.mm-home .cta-info-para,
+.mm-home .paragraph-4,
+.mm-home .page-name {
+  font-family: var(--font-body) !important;
+  font-size: var(--t-body) !important;
+  line-height: var(--lh-body) !important;
+}
+
+/* Consistent reading measure so paragraphs don't run edge-to-edge on desktop. */
+.mm-home .who-para,
+.mm-home .our-sol-para {
+  max-width: 62ch;
+}
+
+/* ────────────────────────────────────────────────────────────
+   2 · ALIGNMENT — one left edge for section heads + body
+   ──────────────────────────────────────────────────────────── */
+.mm-home .hero_header-text,
+.mm-home .who-para,
+.mm-home .our-sol-para,
+.mm-home .hero_header-para {
+  text-align: left !important;
+}
+
+/* ────────────────────────────────────────────────────────────
+   3 · CONTAINER + SPACING RHYTHM
+   ──────────────────────────────────────────────────────────── */
+.mm-home .container-large {
+  max-width: 80rem;
+}
+.mm-home .padding-global,
+.mm-home .container-large {
+  padding-left: var(--pad-x) !important;
+  padding-right: var(--pad-x) !important;
+}
+
+/* Standard vertical rhythm on the main content sections. The ad-hoc Webflow
+   per-section margins (margin-top:3.5rem, margin-bottom:5rem, …) are replaced
+   by one consistent padding scale so sections breathe evenly. */
+.mm-home .section-who-we-are,
+.mm-home .seo-intro-section,
+.mm-home .section_gallery-text,
+.mm-home .feedback,
+.mm-home .section_testimonials {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: var(--sec-pad) !important;
+  padding-bottom: var(--sec-pad) !important;
+}
+/* (section-home-hero spacing left untouched — original hero margins preserved.) */
+/* Marquee bands keep a tighter rhythm — they are dividers, not sections. */
+.mm-home .section_loop-text,
+.mm-home .section_loop-brands,
+.mm-home .section_loop-intro {
+  padding-top: var(--sec-pad-tight) !important;
+  padding-bottom: var(--sec-pad-tight) !important;
+}
+
+/* ────────────────────────────────────────────────────────────
+   4 · BUTTONS — one size, one shape, one hover (colours untouched)
+   ──────────────────────────────────────────────────────────── */
+.mm-home .button,
+.mm-home .w-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 48px !important;
+  padding: 0.8rem 1.6rem !important;
+  border-radius: 12px !important;
+  font-family: var(--font-body) !important;
+  font-size: var(--t-small) !important;
+  font-weight: 600 !important;
+  line-height: 1.1 !important;
+  white-space: nowrap;
+  transition: transform 0.15s var(--ease), filter 0.15s var(--ease) !important;
+}
+.mm-home .button:hover,
+.mm-home .w-button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+.mm-home .button:active,
+.mm-home .w-button:active {
+  transform: translateY(0);
+}
+
+/* ────────────────────────────────────────────────────────────
+   5 · ONE MOTION LANGUAGE — force-visible + a single fade-up entrance
+   Replaces the mixed IX2 reveals. Content is forced visible (never hidden by
+   slow/failed JS); motion is transform-only, so a paused animation can't hide
+   anything. This also carries the hero LCP fix (formerly in mobile-fixes).
+   ──────────────────────────────────────────────────────────── */
+.mm-home .hero_text-wrapper,
+.mm-home .cards_text-left,
+.mm-home .cards_text-right,
+.mm-home .testimonial_text-left,
+.mm-home .testimonial_text-right {
+  opacity: 1 !important;
+  animation: mm-rise 0.6s var(--ease) 0.05s both;
+}
+@keyframes mm-rise {
+  from { transform: translateY(12px); }
+  to   { transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mm-home .hero_text-wrapper,
+  .mm-home .cards_text-left,
+  .mm-home .cards_text-right,
+  .mm-home .testimonial_text-left,
+  .mm-home .testimonial_text-right,
+  .mm-home .button,
+  .mm-home .w-button {
+    animation: none !important;
+    transition: none !important;
+  }
+}

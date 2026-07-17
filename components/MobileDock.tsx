@@ -139,6 +139,9 @@ const MOBILE_DOCK_EMBED_CSS = `
     all: unset;
     cursor: pointer;
     display: flex; align-items: center; justify-content: center;
+    /* 44px minimum touch target (WCAG 2.5.5); icon stays 28px, hit area grows */
+    min-width: 44px; min-height: 44px;
+    box-sizing: border-box;
   }
   .dock-item .label {
     font-size: .55rem;

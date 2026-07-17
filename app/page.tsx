@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-    <PageShell>
+    <PageShell className="mm-home">
       <HomeContent />
       <DarkModeToggle />
       <HomeScripts />

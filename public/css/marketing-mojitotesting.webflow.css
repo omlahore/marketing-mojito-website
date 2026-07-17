@@ -554,7 +554,7 @@ h2 {
   text-align: center;
   text-transform: capitalize;
   cursor: pointer;
-  background-image: linear-gradient(83deg, #82c341, #09ce91);
+  background-image: linear-gradient(45deg, #82c341, #09ce91);
   border: .0625rem solid #0000;
   border-radius: .75rem;
   padding: .75rem 1.6rem;
@@ -577,7 +577,7 @@ h2 {
 }
 
 .button.button-arrow-left {
-  background-image: url('../images/download.png'), linear-gradient(83deg, #82c341, #09ce91);
+  background-image: url('../images/download.png'), linear-gradient(45deg, #82c341, #09ce91);
   background-position: 8%, 0 0;
   background-repeat: no-repeat, repeat;
   background-size: 1.5rem 1.5rem, auto;
@@ -586,7 +586,7 @@ h2 {
 }
 
 .button.button-arrow-left._1 {
-  background-image: url('../images/mail-send.png'), linear-gradient(83deg, #82c341, #09ce91);
+  background-image: url('../images/mail-send.png'), linear-gradient(45deg, #82c341, #09ce91);
   padding-left: .6rem;
   padding-right: .6rem;
   font-size: .7rem;
@@ -610,7 +610,7 @@ h2 {
 }
 
 .button.button-arrow-left._1._11, .button.button-arrow-left._2 {
-  background-image: linear-gradient(83deg, #82c341, #09ce91);
+  background-image: linear-gradient(45deg, #82c341, #09ce91);
   background-position: 0 0;
   background-repeat: repeat;
   background-size: auto;
@@ -684,7 +684,7 @@ h2 {
 
 .button.new-b-arrow:hover {
   color: #fff;
-  background-image: url('../images/icon.png'), linear-gradient(83deg, #82c341, #09ce91);
+  background-image: url('../images/icon.png'), linear-gradient(45deg, #82c341, #09ce91);
   background-position: 89%, 0 0;
   background-repeat: no-repeat, repeat;
   background-size: 1.25rem 1.25rem, auto;
@@ -718,7 +718,7 @@ h2 {
 }
 
 .button.flex-body.font-sm:hover {
-  background-image: linear-gradient(83deg, #82c341, #09ce91);
+  background-image: linear-gradient(45deg, #82c341, #09ce91);
   transform: scale(1.05);
 }
 
@@ -2054,7 +2054,7 @@ h2 {
 }
 
 .project-btn {
-  background-image: url('../images/icon_2.png'), linear-gradient(164deg, #82c341, #09ce91);
+  background-image: url('../images/icon_2.png'), linear-gradient(45deg, #82c341, #09ce91);
   background-position: 76%, 0 0;
   background-repeat: no-repeat, repeat;
   background-size: .8125rem .8125rem, auto;
@@ -2532,7 +2532,7 @@ h2 {
 .button-3 {
   color: #fff;
   text-align: center;
-  background-image: linear-gradient(83deg, #82c341, #09ce91);
+  background-image: linear-gradient(45deg, #82c341, #09ce91);
   border: .0625rem solid #0000;
   border-radius: .75rem;
   padding: .75rem 1.5rem;
@@ -2541,7 +2541,7 @@ h2 {
 }
 
 .button-3.arrow-right {
-  background-image: url('../images/play-circle.png'), linear-gradient(83deg, #82c341, #09ce91);
+  background-image: url('../images/play-circle.png'), linear-gradient(45deg, #82c341, #09ce91);
   background-position: 90%, 0 0;
   background-repeat: no-repeat, repeat;
   background-size: 1.25rem, auto;
@@ -2855,7 +2855,7 @@ h2 {
 .button-4 {
   color: #fff;
   text-align: center;
-  background-image: linear-gradient(83deg, #82c341, #09ce91);
+  background-image: linear-gradient(45deg, #82c341, #09ce91);
   border: .0625rem solid #0000;
   border-radius: .75rem;
   padding: .75rem 1.5rem;
@@ -2877,7 +2877,7 @@ h2 {
 }
 
 .button-4._1.arrow-mail {
-  background-image: url('../images/mail-send_1.png'), linear-gradient(83deg, #82c341, #09ce91);
+  background-image: url('../images/mail-send_1.png'), linear-gradient(45deg, #82c341, #09ce91);
   background-position: 92%, 0 0;
   background-repeat: no-repeat, repeat;
   background-size: 1.25rem, auto;
@@ -2885,7 +2885,7 @@ h2 {
 }
 
 .button-4.button-icon {
-  background-image: url('../images/play-circle.png'), linear-gradient(83deg, #82c341, #09ce91);
+  background-image: url('../images/play-circle.png'), linear-gradient(45deg, #82c341, #09ce91);
   background-position: 96%, 0 0;
   background-repeat: no-repeat, repeat;
   background-size: 1.25rem 1.25rem, auto;
@@ -3110,7 +3110,7 @@ h2 {
 .button-5 {
   color: #fff;
   text-align: center;
-  background-image: linear-gradient(83deg, #82c341, #09ce91);
+  background-image: linear-gradient(45deg, #82c341, #09ce91);
   border: .0625rem solid #0000;
   border-radius: .75rem;
   padding: .75rem 1.5rem;
@@ -3228,7 +3228,7 @@ h2 {
 .button-7 {
   color: #fff;
   text-align: center;
-  background-image: linear-gradient(83deg, #82c341, #09ce91);
+  background-image: linear-gradient(45deg, #82c341, #09ce91);
   border: .0625rem solid #0000;
   border-radius: .75rem;
   padding: .75rem 1.5rem;
@@ -3242,7 +3242,7 @@ h2 {
 }
 
 .button-7.arrow {
-  background-image: url('../images/download.png'), linear-gradient(83deg, #82c341, #09ce91);
+  background-image: url('../images/download.png'), linear-gradient(45deg, #82c341, #09ce91);
   background-position: 5% 44%, 0 0;
   background-repeat: no-repeat, repeat;
   background-size: 1.25rem, auto;
@@ -4673,7 +4673,7 @@ h2 {
 .tool_tab-btn.w--current {
   color: #fff;
   background-color: #0000;
-  background-image: linear-gradient(134deg, #82c341, #09ce91);
+  background-image: linear-gradient(45deg, #82c341, #09ce91);
 }
 
 .ta-text-label {
@@ -5173,7 +5173,7 @@ h2 {
   color: #fff;
   text-align: center;
   background-color: #0000;
-  background-image: linear-gradient(83deg, #82c341, #09ce91);
+  background-image: linear-gradient(45deg, #82c341, #09ce91);
   border: .0625rem solid #0000;
   border-radius: .75rem;
   padding: .75rem 1.5rem;
@@ -5182,7 +5182,7 @@ h2 {
 }
 
 .blog-btn.button-arrow-copy {
-  background-image: url('../images/chevron-right.png'), linear-gradient(83deg, #82c341, #09ce91);
+  background-image: url('../images/chevron-right.png'), linear-gradient(45deg, #82c341, #09ce91);
   background-position: 94%, 0 0;
   background-repeat: no-repeat, repeat;
   background-size: 1.5rem 1.5rem, auto;
@@ -5474,7 +5474,7 @@ h2 {
 
 .brand_button-double {
   background-color: #82c341;
-  background-image: linear-gradient(91deg, #82c341, #09ce91);
+  background-image: linear-gradient(45deg, #82c341, #09ce91);
   border-radius: 1rem;
   padding: 1rem 2rem;
   font-size: 1.2rem;
@@ -5540,7 +5540,7 @@ h2 {
 }
 
 .answer-circle:hover {
-  background-image: linear-gradient(102deg, var(--brand), var(--cyan));
+  background-image: linear-gradient(45deg, var(--brand), var(--cyan));
   color: #fff;
   padding-left: 10px;
   padding-right: 10px;
@@ -7277,7 +7277,7 @@ h2 {
 }
 
 .clear-btn:hover {
-  background-image: linear-gradient(83deg, var(--brand), var(--grad));
+  background-image: linear-gradient(45deg, var(--brand), var(--grad));
   box-shadow: 0 4px 15px -3px var(--brand);
   color: #fff;
 }
@@ -10966,14 +10966,14 @@ h2 {
   }
 
   .button.button-arrow-left._1 {
-    background-image: url('../images/mail-send.png'), linear-gradient(83deg, #82c341, #09ce91);
+    background-image: url('../images/mail-send.png'), linear-gradient(45deg, #82c341, #09ce91);
     background-position: 8%, 0 0;
     background-repeat: no-repeat, repeat;
     background-size: 1.5rem 1.5rem, auto;
   }
 
   .button.button-arrow-left._1.download {
-    background-image: url('../images/mail-send_1.png'), linear-gradient(83deg, #82c341, #09ce91);
+    background-image: url('../images/mail-send_1.png'), linear-gradient(45deg, #82c341, #09ce91);
     padding-left: 3rem;
     padding-right: .6rem;
     font-size: .7rem;
@@ -10981,7 +10981,7 @@ h2 {
 
   .button.button-arrow-left._1._11 {
     background-color: var(--mm-white);
-    background-image: linear-gradient(83deg, #82c341, #09ce91);
+    background-image: linear-gradient(45deg, #82c341, #09ce91);
     background-position: 0 0;
     background-repeat: repeat;
     background-size: auto;
@@ -11964,7 +11964,7 @@ h2 {
   }
 
   .button.button-arrow-left {
-    background-image: url('../images/download.png'), linear-gradient(83deg, #82c341, #09ce91);
+    background-image: url('../images/download.png'), linear-gradient(45deg, #82c341, #09ce91);
     background-position: 4%, 0 0;
     margin-left: auto;
     margin-right: auto;
@@ -11973,7 +11973,7 @@ h2 {
   }
 
   .button.button-arrow-left._1 {
-    background-image: url('../images/mail-send.png'), linear-gradient(83deg, #82c341, #09ce91);
+    background-image: url('../images/mail-send.png'), linear-gradient(45deg, #82c341, #09ce91);
     padding-left: .9rem;
     padding-right: .9rem;
     font-size: 1rem;
@@ -11987,12 +11987,12 @@ h2 {
   }
 
   .button.button-arrow-left._1.vidoe {
-    background-image: url('../images/movie-play.png'), linear-gradient(83deg, #82c341, #09ce91);
+    background-image: url('../images/movie-play.png'), linear-gradient(45deg, #82c341, #09ce91);
     background-position: 7%, 0 0;
   }
 
   .button.button-arrow-left._1._11 {
-    background-image: linear-gradient(83deg, #82c341, #09ce91);
+    background-image: linear-gradient(45deg, #82c341, #09ce91);
     background-position: 0 0;
     background-repeat: repeat;
     background-size: auto;
@@ -12036,7 +12036,7 @@ h2 {
 
   .button.new-b-arrow:hover {
     color: #fff;
-    background-image: url('../images/icon.png'), linear-gradient(83deg, #82c341, #09ce91);
+    background-image: url('../images/icon.png'), linear-gradient(45deg, #82c341, #09ce91);
     background-position: 86%, 0 0;
     background-repeat: no-repeat, repeat;
     background-size: 1.25rem 1.25rem, auto;
@@ -12695,7 +12695,7 @@ h2 {
   }
 
   .button-4.button-icon {
-    background-image: url('../images/play-circle.png'), linear-gradient(83deg, #82c341, #09ce91);
+    background-image: url('../images/play-circle.png'), linear-gradient(45deg, #82c341, #09ce91);
     background-position: 93%, 0 0;
     background-repeat: no-repeat, repeat;
     background-size: 1.5rem 1.5rem, auto;
@@ -13494,7 +13494,7 @@ h2 {
 
   .answer-circle:hover {
     background-color: #fff;
-    background-image: linear-gradient(180deg, var(--brand), var(--cyan));
+    background-image: linear-gradient(45deg, var(--brand), var(--cyan));
     color: #fff;
   }
 

@@ -12,6 +12,20 @@
  *    horizontally as you scroll. Fine on desktop; at phone widths it pushes the
  *    text off-screen. The transforms are inline styles, hence !important.
  */
+/*
+ * 0. HORIZONTAL-SCROLL CONTAINMENT — global, all pages.
+ *    Root cause of the phone-width sideways scroll: nowrap section labels +
+ *    several `width: 100vw` blocks (which ignore the scrollbar) overflow the
+ *    viewport. `clip` on x pins the page without breaking sticky/fixed elements
+ *    (unlike `hidden`, which would create a scroll container). y is untouched.
+ */
+html,
+body {
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+
 @media screen and (max-width: 767px) {
   .hero_header-left,
   .hero_header-left-2,
@@ -25,5 +39,17 @@
   .testimonial_text-left,
   .testimonial_text-right {
     transform: none !important;
+  }
+}
+
+/*
+ * 3. Type scale moved to mm-tokens.css (single source of truth, all viewports).
+ *    This file keeps only overflow/wrap/transform containment fixes.
+ */
+@media screen and (max-width: 991px) {
+  /* Never let a long heading overflow the viewport */
+  .heading-style-h1, .heading-style-h2, .heading-style-h3, .heading-style-h4,
+  .inner-banner-heading, .banner-title, .main-heading-style-h3, .cta-yellow-heading {
+    overflow-wrap: break-word; word-break: normal;
   }
 }
