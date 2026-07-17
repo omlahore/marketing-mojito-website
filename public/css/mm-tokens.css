@@ -389,7 +389,27 @@ h3.heading-style-h4, h3.heading-style-h2, h3.heading-style-h1 { font-size: var(-
 }
 
 /* ============================================================
-   9 · REDUCED MOTION — every animation has an off switch.
+   9 · MOBILE — one phone experience on every page.
+   ============================================================ */
+@media (max-width: 991px) {
+  /* Static pages still render the desktop navbar on phones; React pages
+     hide it (MobileDock is the nav). One behavior everywhere. */
+  .navbar-no-shadow-container {
+    display: none !important;
+  }
+  /* 14px inputs make iOS auto-zoom on focus — 16px stops it. */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+/* Legibility floor — 9-10px labels are illegible on phones. */
+.text-block-9, .country-item {
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+}
+
+/* ============================================================
+   10 · REDUCED MOTION — every animation has an off switch.
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
   .about-cards, .new-box, .startup_brand-block-2,

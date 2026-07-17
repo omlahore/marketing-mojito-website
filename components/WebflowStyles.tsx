@@ -17,12 +17,12 @@ export default function WebflowStyles() {
       {/* eslint-disable-next-line @next/next/no-css-tags */}
       <link href="/css/marketing-mojitotesting.webflow.css" rel="stylesheet" />
       {/* eslint-disable-next-line @next/next/no-css-tags */}
-      <link href="/css/mobile-dock.css" rel="stylesheet" />
+      <link href="/css/mobile-dock.css?v=20260717l" rel="stylesheet" />
       {/* eslint-disable-next-line @next/next/no-css-tags */}
       <link href="/css/mobile-fixes.css?v=20260717" rel="stylesheet" />
       {/* Design tokens — single source of truth for type/buttons/layout. Loads last. */}
       {/* eslint-disable-next-line @next/next/no-css-tags */}
-      <link href="/css/mm-tokens.css?v=20260717k" rel="stylesheet" />
+      <link href="/css/mm-tokens.css?v=20260717l" rel="stylesheet" />
 
       {/* Fonts */}
       <link href="https://fonts.googleapis.com" rel="preconnect" />

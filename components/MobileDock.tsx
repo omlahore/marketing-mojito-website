@@ -144,7 +144,7 @@ const MOBILE_DOCK_EMBED_CSS = `
     box-sizing: border-box;
   }
   .dock-item .label {
-    font-size: .55rem;
+    font-size: .6875rem; /* 11px — 9px was illegible */
     font-weight: 500;
     color: #333;
     line-height: 1;
