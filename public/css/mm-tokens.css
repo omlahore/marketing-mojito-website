@@ -379,14 +379,29 @@ html .k-main-wrapper.orange {
   height: 100% !important;
   object-fit: contain;
 }
-/* Section illustrations: intrinsically tall art must not consume a viewport. */
+/* Section illustrations: intrinsically tall art must not consume a viewport.
+   Explicit width basis (width:auto collapses lazy images to 0x0 and they
+   never load); height follows aspect, capped, contained. */
 .header-image {
+  width: min(100%, 480px) !important;
+  height: auto !important;
   max-height: 520px;
-  width: auto;
   object-fit: contain;
 }
-/* Never let CLS dimension attrs override responsive layout. */
-img[width][height] { max-width: 100%; }
+/* CLS dimension attrs are an aspect-ratio hint, never a layout instruction.
+   :where() = zero specificity, so ANY stylesheet rule still wins; only
+   images with no CSS sizing fall back to responsive proportional scaling. */
+:where(img[width][height]) {
+  max-width: 100%;
+  height: auto;
+}
+/* Testimonial avatars: fixed disc regardless of source image size. */
+.client-name img {
+  width: 56px !important;
+  height: 56px !important;
+  border-radius: 50%;
+  object-fit: cover;
+}
 /* Nested padding wrappers double the rhythm (e.g. .section-faq > .padding-section-small
    = 180px). The OUTER section owns the padding; inner wrappers contribute none. */
 .section-faq [class*="padding-section"],
