@@ -110,7 +110,7 @@ export default function FreeTemplatesPage() {
                       <div className="inner-banner-para">
                         Work smarter, not harder. Gain instant access to these powerful, ready to use
                         marketing resources designed to accelerate your growth, carefully curated by our
-                        in-house experts. Hope you enoy them!
+                        in-house experts. Hope you enjoy them!
                       </div>
                     </div>
                     <div className="div-block-91">

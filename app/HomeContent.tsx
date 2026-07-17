@@ -33,39 +33,35 @@ export default function HomeContent() {
           <div style={{ WebkitTransform: 'translate3d(0vw, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)', MozTransform: 'translate3d(0vw, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)', msTransform: 'translate3d(0vw, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)', transform: 'translate3d(0vw, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)' }} className="loop_text-wrapper">
             <div className="loop_text">
               <div className="loop-service-text">Social Media Marketing</div>
-              <div className="loop-service-text">Search engine Marketing</div>
-              <div className="loop-service-text">BRANDING</div>
-              <div className="loop-service-text">VIDEO Production</div>
-              <div className="loop-service-text">WEB & APP Development</div>
-              <div className="loop-service-text">WEB & APP Development</div>
-              <div className="loop-service-text">ui/UX</div>
+              <div className="loop-service-text">Search Engine Marketing</div>
+              <div className="loop-service-text">Branding</div>
+              <div className="loop-service-text">Video Production</div>
+              <div className="loop-service-text">Web & App Development</div>
+              <div className="loop-service-text">UI/UX</div>
             </div>
             <div className="loop_text">
               <div className="loop-service-text">Social Media Marketing</div>
-              <div className="loop-service-text">Search engine Marketing</div>
-              <div className="loop-service-text">BRANDING</div>
-              <div className="loop-service-text">VIDEO Production</div>
-              <div className="loop-service-text">WEB & APP Development</div>
-              <div className="loop-service-text">WEB & APP Development</div>
-              <div className="loop-service-text">ui/UX</div>
+              <div className="loop-service-text">Search Engine Marketing</div>
+              <div className="loop-service-text">Branding</div>
+              <div className="loop-service-text">Video Production</div>
+              <div className="loop-service-text">Web & App Development</div>
+              <div className="loop-service-text">UI/UX</div>
             </div>
             <div className="loop_text">
               <div className="loop-service-text">Social Media Marketing</div>
-              <div className="loop-service-text">Search engine Marketing</div>
-              <div className="loop-service-text">BRANDING</div>
-              <div className="loop-service-text">VIDEO Production</div>
-              <div className="loop-service-text">WEB & APP Development</div>
-              <div className="loop-service-text">WEB & APP Development</div>
-              <div className="loop-service-text">ui/UX</div>
+              <div className="loop-service-text">Search Engine Marketing</div>
+              <div className="loop-service-text">Branding</div>
+              <div className="loop-service-text">Video Production</div>
+              <div className="loop-service-text">Web & App Development</div>
+              <div className="loop-service-text">UI/UX</div>
             </div>
             <div className="loop_text">
               <div className="loop-service-text">Social Media Marketing</div>
-              <div className="loop-service-text">Search engine Marketing</div>
-              <div className="loop-service-text">BRANDING</div>
-              <div className="loop-service-text">VIDEO Production</div>
-              <div className="loop-service-text">WEB & APP Development</div>
-              <div className="loop-service-text">WEB & APP Development</div>
-              <div className="loop-service-text">ui/UX</div>
+              <div className="loop-service-text">Search Engine Marketing</div>
+              <div className="loop-service-text">Branding</div>
+              <div className="loop-service-text">Video Production</div>
+              <div className="loop-service-text">Web & App Development</div>
+              <div className="loop-service-text">UI/UX</div>
             </div>
           </div>
         </div>
@@ -75,7 +71,7 @@ export default function HomeContent() {
           <div className="padding-global">
             <div className="w-layout-blockcontainer container-large w-container">
               <div className="hero_header-wrapper">
-                <img src="/images/who-we-are.png" loading="lazy" alt="Who we are — Marketing Mojito" className="header-image left-align" />
+                <img src="/images/who-we-are.png" loading="lazy" alt="Who we are — Marketing Mojito" className="header-image left-align" width={305} height={349} />
                 <div className="hero_header-text left-align">
                   <div className="hero_header-left">
                     <h2 className="heading-style-h2">Who We Are </h2>
@@ -142,105 +138,105 @@ export default function HomeContent() {
           <div className="loop_logs-wrapper">
             <div className="loop_band">
               <div className="brand_logo">
-                <img loading="lazy" src="/images/1.png" alt="" />
+                <img loading="lazy" src="/images/1.png" alt="" width={500} height={262} />
               </div>
               <div className="brand_logo">
-                <img loading="lazy" src="/images/2.png" alt="img" />
+                <img loading="lazy" src="/images/2.png" alt="img" width={500} height={262} />
               </div>
               <div className="brand_logo">
-                <img loading="lazy" src="/images/3.png" alt="img" />
+                <img loading="lazy" src="/images/3.png" alt="img" width={500} height={262} />
               </div>
               <div className="brand_logo _1">
-                <img loading="lazy" src="/images/4.png" alt="img" />
+                <img loading="lazy" src="/images/4.png" alt="img" width={500} height={262} />
               </div>
               <div className="brand_logo">
-                <img loading="lazy" src="/images/5.png" alt="img" />
+                <img loading="lazy" src="/images/5.png" alt="img" width={500} height={262} />
               </div>
               <div className="brand_logo">
-                <img loading="lazy" src="/images/6.png" alt="img" />
+                <img loading="lazy" src="/images/6.png" alt="img" width={500} height={262} />
               </div>
             </div>
             <div className="loop_band">
               <div className="brand_logo">
-                <img loading="lazy" src="/images/7.png" alt="" />
+                <img loading="lazy" src="/images/7.png" alt="" width={500} height={262} />
               </div>
               <div className="brand_logo">
-                <img loading="lazy" src="/images/8.png" alt="" />
+                <img loading="lazy" src="/images/8.png" alt="" width={500} height={262} />
               </div>
               <div className="brand_logo">
-                <img loading="lazy" src="/images/9.png" alt="" />
+                <img loading="lazy" src="/images/9.png" alt="" width={500} height={262} />
               </div>
               <div className="brand_logo _1">
-                <img loading="lazy" src="/images/10.png" alt="img" />
+                <img loading="lazy" src="/images/10.png" alt="img" width={500} height={262} />
               </div>
               <div className="brand_logo">
-                <img loading="lazy" src="/images/11.png" alt="img" />
+                <img loading="lazy" src="/images/11.png" alt="img" width={500} height={262} />
               </div>
               <div className="brand_logo">
-                <img loading="lazy" src="/images/12.png" alt="img" />
+                <img loading="lazy" src="/images/12.png" alt="img" width={500} height={262} />
               </div>
               <div className="brand_logo">
-                <img loading="lazy" src="/images/13_1.png" alt="img" />
+                <img loading="lazy" src="/images/13_1.png" alt="img" width={500} height={262} />
               </div>
             </div>
             <div className="loop_band">
               <div className="brand_logo">
-                <img loading="lazy" src="/images/14.png" alt="" />
+                <img loading="lazy" src="/images/14.png" alt="" width={500} height={262} />
               </div>
               <div className="brand_logo">
-                <img loading="lazy" src="/images/15.png" alt="img" />
+                <img loading="lazy" src="/images/15.png" alt="img" width={500} height={262} />
               </div>
               <div className="brand_logo">
-                <img loading="lazy" src="/images/16.png" alt="img" />
+                <img loading="lazy" src="/images/16.png" alt="img" width={500} height={262} />
               </div>
               <div className="brand_logo _1">
-                <img loading="lazy" src="/images/17.png" alt="img" />
+                <img loading="lazy" src="/images/17.png" alt="img" width={500} height={262} />
               </div>
               <div className="brand_logo">
-                <img loading="lazy" src="/images/18.png" alt="img" />
+                <img loading="lazy" src="/images/18.png" alt="img" width={500} height={262} />
               </div>
               <div className="brand_logo">
-                <img loading="lazy" src="/images/19.png" alt="img" />
+                <img loading="lazy" src="/images/19.png" alt="img" width={500} height={262} />
               </div>
             </div>
             <div className="loop_band">
               <div className="brand_logo">
-                <img loading="lazy" src="/images/20.png" alt="" />
+                <img loading="lazy" src="/images/20.png" alt="" width={500} height={262} />
               </div>
               <div className="brand_logo">
-                <img loading="lazy" src="/images/1.png" alt="img" />
+                <img loading="lazy" src="/images/1.png" alt="img" width={500} height={262} />
               </div>
               <div className="brand_logo">
-                <img loading="lazy" src="/images/2.png" alt="img" />
+                <img loading="lazy" src="/images/2.png" alt="img" width={500} height={262} />
               </div>
               <div className="brand_logo _1">
-                <img loading="lazy" src="/images/3.png" alt="img" />
+                <img loading="lazy" src="/images/3.png" alt="img" width={500} height={262} />
               </div>
               <div className="brand_logo">
-                <img loading="lazy" src="/images/4.png" alt="img" />
+                <img loading="lazy" src="/images/4.png" alt="img" width={500} height={262} />
               </div>
               <div className="brand_logo">
-                <img loading="lazy" src="/images/5.png" alt="img" />
+                <img loading="lazy" src="/images/5.png" alt="img" width={500} height={262} />
               </div>
             </div>
             <div className="loop_band">
               <div className="brand_logo">
-                <img loading="lazy" src="/images/1.png" alt="" />
+                <img loading="lazy" src="/images/1.png" alt="" width={500} height={262} />
               </div>
               <div className="brand_logo">
-                <img loading="lazy" src="/images/2.png" alt="img" />
+                <img loading="lazy" src="/images/2.png" alt="img" width={500} height={262} />
               </div>
               <div className="brand_logo">
-                <img loading="lazy" src="/images/3.png" alt="img" />
+                <img loading="lazy" src="/images/3.png" alt="img" width={500} height={262} />
               </div>
               <div className="brand_logo _1">
-                <img loading="lazy" src="/images/4.png" alt="img" />
+                <img loading="lazy" src="/images/4.png" alt="img" width={500} height={262} />
               </div>
               <div className="brand_logo">
-                <img loading="lazy" src="/images/5.png" alt="img" />
+                <img loading="lazy" src="/images/5.png" alt="img" width={500} height={262} />
               </div>
               <div className="brand_logo">
-                <img loading="lazy" src="/images/6.png" alt="img" />
+                <img loading="lazy" src="/images/6.png" alt="img" width={500} height={262} />
               </div>
             </div>
           </div>
@@ -260,16 +256,14 @@ export default function HomeContent() {
                       <p className="our-sol-para">We build websites, create memorable videos, and elevate your brand through media, SEO, and AEO. From strategy to storytelling, we craft digital experiences that stand out, engage, and drive growth.</p>
                     </div>
                     <div className="hero_header-list right-align">
-                      <a href="https://marketingmojito.com/project/" target="_blank" className="button new-w-arrow our-solution w-button">Checkout Our Work</a>
+                      <a href="https://marketingmojito.com/project/" target="_blank" className="button new-w-arrow our-solution w-button">Check Out Our Work</a>
                     </div>
                   </div>
                 </div>
-                <img src="/images/our-solution.png" loading="lazy" sizes="(max-width: 767px) 100vw, (max-width: 991px) 728px, 761px" srcSet="/images/our-solution-p-500.png 500w, /images/our-solution.png 761w" alt="Our solutions — Marketing Mojito" className="header-image right-align" />
+                <img src="/images/our-solution.png" loading="lazy" sizes="(max-width: 767px) 100vw, (max-width: 991px) 728px, 761px" srcSet="/images/our-solution-p-500.png 500w, /images/our-solution.png 761w" alt="Our solutions — Marketing Mojito" className="header-image right-align" width={761} height={790} />
               </div>
               <div className="code-embed-7 w-embed w-script">
-                <style dangerouslySetInnerHTML={{ __html: `
-    @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;700&display=swap');
-  ` }} />
+                {/* Unbounded already loads via WebflowStyles — duplicate @import removed. */}
                 <style dangerouslySetInnerHTML={{ __html: `
     /* ─── Base Reset ─── */
     .services-list, .services-list * {
@@ -441,7 +435,7 @@ export default function HomeContent() {
                   <div className="service-row" tabIndex={0} data-img="https://cdn.prod.website-files.com/6821a11a1adb296fa1dad4b9/6877998c379b303b1d289276_digital%20transformation%20(1)%20(1)-p-2600.png">
                     <div className="left">
                       <div className="icon">
-                        <img src="https://unpkg.com/ionicons@5.5.2/dist/svg/cloud-download-outline.svg" alt="" />
+                        <img src="/images/icons/cloud-download-outline.svg" alt="" width={512} height={512} />
                       </div>
                       <div className="title">Digital Transformation</div>
                     </div>
@@ -457,7 +451,7 @@ export default function HomeContent() {
                   <div className="service-row" tabIndex={0} data-img="https://cdn.prod.website-files.com/6821a11a1adb296fa1dad4b9/685d2b80d5b8aaa22985bafd_Branding.png">
                     <div className="left">
                       <div className="icon">
-                        <img src="https://unpkg.com/ionicons@5.5.2/dist/svg/brush-outline.svg" alt="" />
+                        <img src="/images/icons/brush-outline.svg" alt="" />
                       </div>
                       <div className="title">Brand & Visual Identity</div>
                     </div>
@@ -474,7 +468,7 @@ export default function HomeContent() {
                   <div className="service-row" tabIndex={0} data-img="https://cdn.prod.website-files.com/6821a11a1adb296fa1dad4b9/685d2b8016d23f6af671fcc7_performance%20analytics.png">
                     <div className="left">
                       <div className="icon">
-                        <img src="https://unpkg.com/ionicons@5.5.2/dist/svg/trending-up-outline.svg" alt="" />
+                        <img src="/images/icons/trending-up-outline.svg" alt="" />
                       </div>
                       <div className="title">Growth Marketing</div>
                     </div>
@@ -491,7 +485,7 @@ export default function HomeContent() {
                   <div className="service-row" tabIndex={0} data-img="/images/68568017e3cef5056aaffac0_Social-Media-Engagement-1.png">
                     <div className="left">
                       <div className="icon">
-                        <img src="https://unpkg.com/ionicons@5.5.2/dist/svg/chatbubbles-outline.svg" alt="" />
+                        <img src="/images/icons/chatbubbles-outline.svg" alt="" />
                       </div>
                       <div className="title">Social Media Marketing</div>
                     </div>
@@ -508,7 +502,7 @@ export default function HomeContent() {
                   <div className="service-row" tabIndex={0} data-img="https://cdn.prod.website-files.com/6821a11a1adb296fa1dad4b9/685d2b83eceb06b732495971_SEO.png">
                     <div className="left">
                       <div className="icon">
-                        <img src="https://unpkg.com/ionicons@5.5.2/dist/svg/business-outline.svg" alt="" />
+                        <img src="/images/icons/business-outline.svg" alt="" />
                       </div>
                       <div className="title">Industries We Serve</div>
                     </div>
@@ -536,7 +530,7 @@ export default function HomeContent() {
                   <div className="content-box-wrapper">
                     <div className="box-title-wrapper">
                       <h4 className="heading-12">Digital Transformation</h4>
-                      <img src="/images/icon-2.png" loading="lazy" style={{ WebkitTransform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', MozTransform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', msTransform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', transform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', transformStyle: 'preserve-3d' }} alt="" className="arrow-icon" />
+                      <img src="/images/icon-2.png" loading="lazy" style={{ WebkitTransform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', MozTransform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', msTransform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', transform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', transformStyle: 'preserve-3d' }} alt="" className="arrow-icon" width={20} height={20} />
                     </div>
                     <div className="content-box add-left-space flex-box">
                       <a href="/websites-ecommerce" className="page-name">Website & E-Commerce</a>
@@ -549,7 +543,7 @@ export default function HomeContent() {
                   <div className="content-box-wrapper">
                     <div className="box-title-wrapper">
                       <h4 className="heading-12">Brand & Visual identity</h4>
-                      <img src="/images/icon-2.png" loading="lazy" style={{ WebkitTransform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', MozTransform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', msTransform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', transform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', transformStyle: 'preserve-3d' }} alt="" className="arrow-icon" />
+                      <img src="/images/icon-2.png" loading="lazy" style={{ WebkitTransform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', MozTransform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', msTransform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', transform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', transformStyle: 'preserve-3d' }} alt="" className="arrow-icon" width={20} height={20} />
                     </div>
                     <div className="content-box add-left-space flex-box">
                       <a href="/brand-visual-identity" className="page-name">Brand And Visual ID</a>
@@ -563,7 +557,7 @@ export default function HomeContent() {
                   <div className="content-box-wrapper">
                     <div className="box-title-wrapper">
                       <h4 className="heading-12">Growth Marketing</h4>
-                      <img src="/images/icon-2.png" loading="lazy" style={{ WebkitTransform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', MozTransform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', msTransform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', transform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', transformStyle: 'preserve-3d' }} alt="" className="arrow-icon" />
+                      <img src="/images/icon-2.png" loading="lazy" style={{ WebkitTransform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', MozTransform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', msTransform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', transform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', transformStyle: 'preserve-3d' }} alt="" className="arrow-icon" width={20} height={20} />
                     </div>
                     <div className="content-box add-left-space flex-box">
                       <a href="/paid-advertising" className="page-name">Paid Advertising</a>
@@ -577,7 +571,7 @@ export default function HomeContent() {
                   <div className="content-box-wrapper">
                     <div className="box-title-wrapper">
                       <h4 className="heading-12">Social Media Marketing</h4>
-                      <img src="/images/icon-2.png" loading="lazy" style={{ WebkitTransform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', MozTransform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', msTransform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', transform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', transformStyle: 'preserve-3d' }} alt="" className="arrow-icon" />
+                      <img src="/images/icon-2.png" loading="lazy" style={{ WebkitTransform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', MozTransform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', msTransform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', transform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', transformStyle: 'preserve-3d' }} alt="" className="arrow-icon" width={20} height={20} />
                     </div>
                     <div className="content-box add-left-space flex-box">
                       <a href="/strategy-management" className="page-name">Strategy Management</a>
@@ -591,7 +585,7 @@ export default function HomeContent() {
                   <div className="content-box-wrapper">
                     <div className="box-title-wrapper">
                       <h4 className="heading-12">Industries We Serve</h4>
-                      <img src="/images/icon-2.png" loading="lazy" style={{ WebkitTransform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', MozTransform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', msTransform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', transform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', transformStyle: 'preserve-3d' }} alt="" className="arrow-icon" />
+                      <img src="/images/icon-2.png" loading="lazy" style={{ WebkitTransform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', MozTransform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', msTransform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', transform: 'translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)', transformStyle: 'preserve-3d' }} alt="" className="arrow-icon" width={20} height={20} />
                     </div>
                     <div className="content-box add-left-space flex-box">
                       <a href="/e-commerce-digital-marketing" className="page-name">E-Commerce</a>
@@ -624,71 +618,71 @@ export default function HomeContent() {
                   </div>
                 </div>
                 <div className="mob-arrow-wrap">
-                  <img src="/images/gg_arrow-up-o.png" loading="lazy" alt="" className="image-44" />
+                  <img src="/images/gg_arrow-up-o.png" loading="lazy" alt="" className="image-44" width={32} height={32} />
                 </div>
               </div>
               <div className="startup-desgin-wrapper">
                 <div data-w-id="a2c79637-c3d3-8e53-a987-b59ee824f827" className="startup_brand-block-2">
-                  <img loading="lazy" src="/images/29.png" alt="" className="image-43" />
+                  <img loading="lazy" src="/images/29.png" alt="" className="image-43" width={1920} height={1080} />
                   <div className="brand_text-wrapper">
                     <div className="portfolio-cards-title">Branding Agencies 101: Everything You Need to Know</div>
                     <div className="portfolio-para">Branding Agencies 101” is your complete guide to understanding what branding agencies do, their services, and how they help businesses create strong visual and emotional connections with customers. Learn key insights to choose the right agency for your brand journey.</div>
                   </div>
                   <div className="option-brand">
                     <div className="brand-option">
-                      <div className="text-14 text-weight-semibold whitr">Logo Design</div>
+                      <div className="text-14 text-weight-semibold whitr">Branding</div>
                     </div>
                     <div className="brand-option">
-                      <div className="text-14 text-weight-semibold whitr">Web Design</div>
+                      <div className="text-14 text-weight-semibold whitr">Strategy</div>
                     </div>
                     <div className="brand-option">
-                      <div className="text-14 text-weight-semibold whitr">Print</div>
+                      <div className="text-14 text-weight-semibold whitr">Guide</div>
                     </div>
                   </div>
                   <div className="startup-mask-2">
-                    <a href="https://marketingmojito.com/blog/what-does-a-branding-agency-do/" className="project-btn w-button">Project link</a>
+                    <a href="https://marketingmojito.com/blog/what-does-a-branding-agency-do/" className="project-btn w-button">Read Article</a>
                   </div>
                 </div>
                 <div data-w-id="a2c79637-c3d3-8e53-a987-b59ee824f83b" className="startup_brand-block-2">
-                  <img loading="lazy" src="/images/13.png" alt="" className="image-43" />
+                  <img loading="lazy" src="/images/13.png" alt="" className="image-43" width={1920} height={1080} />
                   <div className="brand_text-wrapper">
                     <div className="portfolio-cards-title">Crack the Code: Lead Generation for Real Estate in India</div>
                     <div className="portfolio-para">Unlock the secrets to effective lead generation in India’s dynamic real estate market. Discover proven strategies, digital tools, and marketing techniques that help realtors attract quality leads and close more deals.</div>
                   </div>
                   <div className="option-brand">
                     <div className="brand-option">
-                      <div className="text-14 text-weight-semibold whitr">Logo Design</div>
+                      <div className="text-14 text-weight-semibold whitr">Lead Generation</div>
                     </div>
                     <div className="brand-option">
-                      <div className="text-14 text-weight-semibold whitr">Web Design</div>
+                      <div className="text-14 text-weight-semibold whitr">Real Estate</div>
                     </div>
                     <div className="brand-option">
-                      <div className="text-14 text-weight-semibold whitr">Print</div>
+                      <div className="text-14 text-weight-semibold whitr">Playbook</div>
                     </div>
                   </div>
                   <div className="startup-mask-2">
-                    <a href="https://marketingmojito.com/blog/generate-leads-for-real-estate-business-of-india/" className="project-btn w-button">Project link</a>
+                    <a href="https://marketingmojito.com/blog/generate-leads-for-real-estate-business-of-india/" className="project-btn w-button">Read Article</a>
                   </div>
                 </div>
                 <div data-w-id="a2c79637-c3d3-8e53-a987-b59ee824f84f" className="startup_brand-block-2">
-                  <img loading="lazy" src="/images/43.png" alt="" className="image-43" />
+                  <img loading="lazy" src="/images/43.png" alt="" className="image-43" width={1920} height={1080} />
                   <div className="brand_text-wrapper">
                     <div className="portfolio-cards-title">How To Build A Memorable Company Presence On LinkedIn</div>
                     <div className="portfolio-para">Want your brand to shine on LinkedIn? Explore practical tips to build a memorable company presence that attracts followers, boosts engagement, and strengthens your business credibility.</div>
                   </div>
                   <div className="option-brand">
                     <div className="brand-option">
-                      <div className="text-14 text-weight-semibold whitr">Logo Design</div>
+                      <div className="text-14 text-weight-semibold whitr">LinkedIn</div>
                     </div>
                     <div className="brand-option">
-                      <div className="text-14 text-weight-semibold whitr">Web Design</div>
+                      <div className="text-14 text-weight-semibold whitr">B2B</div>
                     </div>
                     <div className="brand-option">
-                      <div className="text-14 text-weight-semibold whitr">Print</div>
+                      <div className="text-14 text-weight-semibold whitr">Guide</div>
                     </div>
                   </div>
                   <div className="startup-mask-2">
-                    <a href="https://marketingmojito.com/blog/how-to-make-your-company-stand-out-on-linkedin/" className="project-btn w-button">Project link</a>
+                    <a href="https://marketingmojito.com/blog/how-to-make-your-company-stand-out-on-linkedin/" className="project-btn w-button">Read Article</a>
                   </div>
                 </div>
                 <div className="code-embed-8 w-embed">
@@ -739,14 +733,14 @@ export default function HomeContent() {
                         <div className="client-des">“Working with Marketing Mojito felt like adding a growth engine to our team. From revamping our brand identity to driving real results on LinkedIn, they’ve been instrumental in our B2B strategy. Truly a partner, not just a vendor.”</div>
                         <div className="client_detils">
                           <div className="client-name">
-                            <img loading="lazy" src="/images/New-Project-18.png" alt="" />
+                            <img loading="lazy" src="/images/avatar-deepak.png" alt="Deepak" width={192} height={192} />
                             <div>
                               <div className="text-block-8">Deepak</div>
                               <div className="text-block-9">Founder – AeonX</div>
                             </div>
                           </div>
                           <div>
-                            <img loading="lazy" src="/images/icon-quotes.svg" alt="" />
+                            <img loading="lazy" src="/images/icon-quotes.svg" alt="" width={48} height={48} />
                           </div>
                         </div>
                       </div>
@@ -754,14 +748,14 @@ export default function HomeContent() {
                         <div className="client-des">“Marketing Mojito has redefined how we present Indian culture to the world. Their content curation and influencer strategies are absolutely on point – engaging, vibrant, and always trending.”</div>
                         <div className="client_detils">
                           <div className="client-name">
-                            <img loading="lazy" src="/images/karamjeetdua.png" alt="" />
+                            <img loading="lazy" src="/images/karamjeetdua.png" alt="" width={48} height={48} />
                             <div>
                               <div className="text-block-8">Karamjeet Dua</div>
                               <div className="text-block-9">Founder – XploreIndia Stream</div>
                             </div>
                           </div>
                           <div>
-                            <img loading="lazy" src="/images/icon-quotes.svg" alt="" />
+                            <img loading="lazy" src="/images/icon-quotes.svg" alt="" width={48} height={48} />
                           </div>
                         </div>
                       </div>
@@ -769,14 +763,14 @@ export default function HomeContent() {
                         <div className="client-des">“Their data-backed digital strategies aligned seamlessly with our vision. It’s rare to find a creative team that understands performance metrics and AI trends as well as they do.”</div>
                         <div className="client_detils">
                           <div className="client-name">
-                            <img loading="lazy" src="/images/New-Project-19.png" alt="" />
+                            <img loading="lazy" src="/images/avatar-biswajit.png" alt="Dr. Biswajit" width={192} height={192} />
                             <div>
                               <div className="text-block-8">Dr. Biswajit</div>
                               <div className="text-block-9">Design Team Lead at VMware</div>
                             </div>
                           </div>
                           <div>
-                            <img loading="lazy" src="/images/icon-quotes.svg" alt="" />
+                            <img loading="lazy" src="/images/icon-quotes.svg" alt="" width={48} height={48} />
                           </div>
                         </div>
                       </div>
@@ -784,14 +778,14 @@ export default function HomeContent() {
                         <div className="client-des">“In the hospitality space, standing out is tough. Marketing Mojito made it look easy. From stunning visuals to compelling storytelling – they brought our properties to life online.”</div>
                         <div className="client_detils">
                           <div className="client-name">
-                            <img loading="lazy" src="/images/sa.png" alt="" />
+                            <img loading="lazy" src="/images/sa.png" alt="" width={48} height={48} />
                             <div>
                               <div className="text-block-8">Saurabh Gahoi</div>
                               <div className="text-block-9">SVP Marketing – Ramee Group</div>
                             </div>
                           </div>
                           <div>
-                            <img loading="lazy" src="/images/icon-quotes.svg" alt="" />
+                            <img loading="lazy" src="/images/icon-quotes.svg" alt="" width={48} height={48} />
                           </div>
                         </div>
                       </div>
@@ -799,14 +793,14 @@ export default function HomeContent() {
                         <div className="client-des">“What I admire most is their ability to blend creativity with corporate clarity. Their LinkedIn campaigns boosted our employer brand and recruitment efforts beyond expectations.”</div>
                         <div className="client_detils">
                           <div className="client-name">
-                            <img loading="lazy" src="/images/New-Project-18.png" alt="" />
+                            <img loading="lazy" src="/images/avatar-sunil-sathe.png" alt="Sunil Sathe" width={192} height={192} />
                             <div>
                               <div className="text-block-8">Sunil Sathe</div>
                               <div className="text-block-9">Corporate Communication Head – Ashapura Group</div>
                             </div>
                           </div>
                           <div>
-                            <img loading="lazy" src="/images/icon-quotes.svg" alt="" />
+                            <img loading="lazy" src="/images/icon-quotes.svg" alt="" width={48} height={48} />
                           </div>
                         </div>
                       </div>
@@ -814,14 +808,14 @@ export default function HomeContent() {
                         <div className="client-des">“They understood our brand&apos;s tone and internal alignment needs with impressive precision. Seamless execution, fast turnaround, and consistently impactful content.”</div>
                         <div className="client_detils">
                           <div className="client-name">
-                            <img loading="lazy" src="/images/female-icon.png" alt="" />
+                            <img loading="lazy" src="/images/female-icon.png" alt="" width={48} height={48} />
                             <div>
                               <div className="text-block-8">Yashika</div>
                               <div className="text-block-9">Corporate Communications – JWIL</div>
                             </div>
                           </div>
                           <div>
-                            <img loading="lazy" src="/images/icon-quotes.svg" alt="" />
+                            <img loading="lazy" src="/images/icon-quotes.svg" alt="" width={48} height={48} />
                           </div>
                         </div>
                       </div>
@@ -829,14 +823,14 @@ export default function HomeContent() {
                         <div className="client-des">“Marketing Mojito beautifully translated my music and legacy into the digital space. Their social media management and event promotions helped us connect with a whole new generation.”</div>
                         <div className="client_detils">
                           <div className="client-name">
-                            <img loading="lazy" src="/images/hariharan-ji.png" alt="" />
+                            <img loading="lazy" src="/images/hariharan-ji.png" alt="" width={48} height={48} />
                             <div>
                               <div className="text-block-8">Hariharan</div>
                               <div className="text-block-9">Singer & Padma Shri Awardee</div>
                             </div>
                           </div>
                           <div>
-                            <img loading="lazy" src="/images/icon-quotes.svg" alt="" />
+                            <img loading="lazy" src="/images/icon-quotes.svg" alt="" width={48} height={48} />
                           </div>
                         </div>
                       </div>
@@ -844,14 +838,14 @@ export default function HomeContent() {
                         <div className="client-des">“They captured the essence of my art and heritage with grace. I now have a digital presence that truly resonates with my audience and elevates my brand.”</div>
                         <div className="client_detils">
                           <div className="client-name">
-                            <img loading="lazy" src="/images/jaspinder-narula.png" alt="" />
+                            <img loading="lazy" src="/images/jaspinder-narula.png" alt="" width={48} height={48} />
                             <div>
                               <div className="text-block-8">Jaspinder Narula</div>
                               <div className="text-block-9">Singer & Padma Shri Awardee</div>
                             </div>
                           </div>
                           <div>
-                            <img loading="lazy" src="/images/icon-quotes.svg" alt="" />
+                            <img loading="lazy" src="/images/icon-quotes.svg" alt="" width={48} height={48} />
                           </div>
                         </div>
                       </div>
@@ -859,14 +853,14 @@ export default function HomeContent() {
                         <div className="client-des">“Entertainment marketing needs a pulse on what’s hot – and Marketing Mojito has that instinct. From buzz-worthy content to strategic collaborations, they deliver every time.”</div>
                         <div className="client_detils">
                           <div className="client-name">
-                            <img loading="lazy" src="/images/New-Project-19.png" alt="" />
+                            <img loading="lazy" src="/images/avatar-vishal-g.png" alt="Vishal G" width={192} height={192} />
                             <div>
                               <div className="text-block-8">Vishal G</div>
                               <div className="text-block-9">Founder – Morya Entertainment</div>
                             </div>
                           </div>
                           <div>
-                            <img loading="lazy" src="/images/icon-quotes.svg" alt="" />
+                            <img loading="lazy" src="/images/icon-quotes.svg" alt="" width={48} height={48} />
                           </div>
                         </div>
                       </div>
@@ -874,14 +868,14 @@ export default function HomeContent() {
                         <div className="client-des">“Working with Marketing Mojito felt like adding a growth engine to our team. From revamping our brand identity to driving real results on LinkedIn, they’ve been instrumental in our B2B strategy. Truly a partner, not just a vendor.”</div>
                         <div className="client_detils">
                           <div className="client-name">
-                            <img loading="lazy" src="/images/New-Project-18.png" alt="" />
+                            <img loading="lazy" src="/images/avatar-deepak.png" alt="Deepak" width={192} height={192} />
                             <div>
                               <div className="text-block-8">Deepak</div>
                               <div className="text-block-9">Founder – AeonX</div>
                             </div>
                           </div>
                           <div>
-                            <img loading="lazy" src="/images/icon-quotes.svg" alt="" />
+                            <img loading="lazy" src="/images/icon-quotes.svg" alt="" width={48} height={48} />
                           </div>
                         </div>
                       </div>
@@ -889,14 +883,14 @@ export default function HomeContent() {
                         <div className="client-des">“Marketing Mojito has redefined how we present Indian culture to the world. Their content curation and influencer strategies are absolutely on point – engaging, vibrant, and always trending.”</div>
                         <div className="client_detils">
                           <div className="client-name">
-                            <img loading="lazy" src="/images/karamjeetdua.png" alt="" />
+                            <img loading="lazy" src="/images/karamjeetdua.png" alt="" width={48} height={48} />
                             <div>
                               <div className="text-block-8">Karamjeet Dua</div>
                               <div className="text-block-9">Founder – XploreIndia Stream</div>
                             </div>
                           </div>
                           <div>
-                            <img loading="lazy" src="/images/icon-quotes.svg" alt="" />
+                            <img loading="lazy" src="/images/icon-quotes.svg" alt="" width={48} height={48} />
                           </div>
                         </div>
                       </div>
@@ -904,14 +898,14 @@ export default function HomeContent() {
                         <div className="client-des">“Their data-backed digital strategies aligned seamlessly with our vision. It’s rare to find a creative team that understands performance metrics and AI trends as well as they do.”</div>
                         <div className="client_detils">
                           <div className="client-name">
-                            <img loading="lazy" src="/images/New-Project-19.png" alt="" />
+                            <img loading="lazy" src="/images/avatar-biswajit.png" alt="Dr. Biswajit" width={192} height={192} />
                             <div>
                               <div className="text-block-8">Dr. Biswajit</div>
                               <div className="text-block-9">Design Team Lead at VMware</div>
                             </div>
                           </div>
                           <div>
-                            <img loading="lazy" src="/images/icon-quotes.svg" alt="" />
+                            <img loading="lazy" src="/images/icon-quotes.svg" alt="" width={48} height={48} />
                           </div>
                         </div>
                       </div>
@@ -1095,7 +1089,7 @@ export default function HomeContent() {
       </div>
       <div className="whatsapp-block">
         <a id="whatsapp-button" data-w-id="56d04114-1b9f-fba3-03d9-bfa1040cf8fd" href="https://api.whatsapp.com/send?phone=919152605355" className="whatsapp-container w-inline-block">
-          <img loading="lazy" src="/images/whatsapp.svg" alt="" className="whatsapp-icon" />
+          <img loading="lazy" src="/images/whatsapp.svg" alt="" className="whatsapp-icon" width={31} height={31} />
         </a>
       </div>
       {/* Mobile line-clamp removed: it hid the SEO copy and its internal links on phones. */}

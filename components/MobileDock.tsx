@@ -52,7 +52,7 @@ const SOLUTION_SECTIONS: DockSection[] = [
     children: [
       { href: '/e-commerce-digital-marketing', label: 'E-Commerce' },
       { href: '/healthcare-marketing', label: 'Healthcare' },
-      { href: '/real-estate-digital-marketing', label: 'Real - Estate' },
+      { href: '/real-estate-digital-marketing', label: 'Real Estate' },
       { href: '/saas-digital-marketing', label: 'SaaS' },
       { href: '/hospitality-digital-marketing', label: 'Hospitality' },
       { href: '/entertainment-digital-marketing', label: 'Entertainment' },

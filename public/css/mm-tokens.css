@@ -361,6 +361,12 @@ html .k-main-wrapper.orange {
   margin: 0.6rem 0 1.1rem;
 }
 .section-agency ul li::marker { color: var(--mm-green); }
+/* Bare-text FAQs (no accordion markup): give each Q/A pair a quiet divider rhythm. */
+.section-agency .text-size-regular.text-weight-bold {
+  margin-top: 1.6em !important;
+  padding-top: 1.1em;
+  border-top: 1px solid #dfe9d8;
+}
 .section-agency h2 { margin-bottom: 0.6em; }
 .section-agency h3, .section-agency h4 { margin: 1.4em 0 0.45em; }
 /* Semantic tag wins over Webflow class aliases (e.g. <h2 class="heading-style-h4">):
@@ -409,7 +415,57 @@ h3.heading-style-h4, h3.heading-style-h2, h3.heading-style-h1 { font-size: var(-
 }
 
 /* ============================================================
-   10 · REDUCED MOTION — every animation has an off switch.
+   9b · MARQUEES — CSS-driven, cannot "randomly stop".
+   The IX2/JS marquees died whenever their runtime hiccuped
+   (the original "animations randomly stop" bug). The wrappers
+   hold identical duplicated halves, so a -50% translateX loop
+   is seamless. Inline IX2 transforms are overridden by the
+   animation (animations beat inline styles for the property).
+   ============================================================ */
+.loop_text-wrapper,
+.loop_intro.left,
+.loop_intro.right {
+  display: flex !important;
+  width: max-content !important;
+  will-change: transform;
+}
+.loop_text-wrapper { animation: mm-marq 40s linear infinite; }
+.loop_intro.left { animation: mm-marq 32s linear infinite; }
+.loop_intro.right { animation: mm-marq 32s linear infinite reverse; }
+@keyframes mm-marq {
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .loop_text-wrapper, .loop_intro.left, .loop_intro.right {
+    animation: none !important;
+  }
+}
+
+/* ============================================================
+   10 · ENTRANCE MOTION — scroll-driven card reveals.
+   Progressive: browsers without animation-timeline show static
+   content (visible by default, per the motion rule). Transform
+   only — nothing can get stuck hidden. Marquee-driven elements
+   (.client-card) excluded: their position changes without page
+   scroll, which would fight the view() timeline.
+   ============================================================ */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .k-main-wrapper, .social-platform-card, .featured-card,
+    .new-box, .startup_brand-block-2, .tool-card {
+      animation: mm-rise-view 0.6s var(--mm-ease) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
+  }
+}
+@keyframes mm-rise-view {
+  from { transform: translateY(20px); }
+  to { transform: none; }
+}
+
+/* ============================================================
+   11 · REDUCED MOTION — every animation has an off switch.
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
   .about-cards, .new-box, .startup_brand-block-2,

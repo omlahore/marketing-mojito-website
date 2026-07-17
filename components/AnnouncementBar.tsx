@@ -41,7 +41,7 @@ export default function AnnouncementBar() {
       <span className="text-loop-14">
         🧐 Not sure what service you need?  Book a FREE 15-min strategy call!
       </span>
-      <span className="text-loop-14">👉 [Talk to an Expert]</span>
+      <span className="text-loop-14">👉 Talk to an Expert</span>
     </span>
   ));
 

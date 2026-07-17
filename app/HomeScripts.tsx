@@ -5,17 +5,12 @@ import { useEffect } from 'react';
 /** Webflow page id from the original public/index.html <html data-wf-page>. */
 const HOME_WF_PAGE_ID = '6821a11a1adb296fa1dad4c5';
 
-/** Same external scripts, same order, as the static Webflow export. */
+/**
+ * Homepage scripts. The Webflow export also loaded GSAP (+ 5 plugins), Swiper
+ * and weblocks — audited 2026-07: nothing on the page uses them (marquees are
+ * IX2/CSS; no .swiper elements; weblocks logged "no instances"). ~500KB cut.
+ */
 const HOME_SCRIPTS = [
-  'https://cdn.prod.website-files.com/gsap/3.14.2/gsap.min.js',
-  'https://cdn.prod.website-files.com/gsap/3.14.2/ScrollTrigger.min.js',
-  'https://cdn.prod.website-files.com/gsap/3.14.2/InertiaPlugin.min.js',
-  'https://cdn.prod.website-files.com/gsap/3.14.2/Physics2DPlugin.min.js',
-  'https://cdn.prod.website-files.com/gsap/3.14.2/PhysicsPropsPlugin.min.js',
-  'https://cdn.prod.website-files.com/gsap/3.14.2/CustomEase.min.js',
-  'https://unpkg.com/swiper/swiper-bundle.min.js',
-  'https://weblocks.io/library.js',
-  'https://weblocks.io/script-66-529.js',
   '/js/forms.js',
 ];
 
