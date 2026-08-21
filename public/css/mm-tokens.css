@@ -139,6 +139,36 @@ h6, .heading-style-h6, .heading-6, .heading-7 {
   line-height: 1.1 !important;
   letter-spacing: -0.02em !important;
 }
+/* Hero is bespoke below 480px. .hero_wrapper drops to a 30rem box there (vs
+   45rem desktop / 65rem tablet) and carries the illustration as a background,
+   so the text has to stay inside the clear zone at the top. Each phrase must
+   hold one line: "Solve. Develop." needs 353px at the 40px ramp size but only
+   315px is available at 375px, so it wrapped to two lines and the block ran
+   down into the limes. vw here rather than a fixed floor so it still fits one
+   line on a 320px screen. */
+@media screen and (max-width: 479px) {
+  .heading-style-h1 .text-block-53,
+  .heading-style-h1 .text-block-54 {
+    font-size: clamp(24px, 8.5vw, 34px) !important;
+  }
+  /* The illustration is 1536x1120 landscape but the phone hero box is 315x480
+     portrait, so background-size:cover scaled it to fill the height and threw
+     away 52% of its width — the artwork covered all 480px and left no clear
+     zone, which is why the copy sat on top of the limes.
+
+     Size by HEIGHT, not width. `contain` keys off the box width, so the clear
+     zone shrank as the phone got wider (only 174px left at 479px, against
+     ~202px of text) and the overlap came back at the top of the range.
+     `auto 50%` pins the artwork to half the 480px box at every phone width, so
+     the text always gets a constant 240px above it.
+
+     Desktop keeps cover: at 1280+ the box is finally wider than the image, so
+     cover crops vertically instead and loses nothing important. */
+  .hero_wrapper {
+    background-size: auto 50% !important;
+    background-position: 50% 100% !important;
+  }
+}
 
 /* Lead paragraph — kills the stray 24px body copy (was .main-subtitle etc). */
 .main-subtitle, .banner-subtitle, .city-hero-sub {
