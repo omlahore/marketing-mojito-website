@@ -12,7 +12,12 @@
  *   exactly 2 buttons = PRIMARY (gradient) / SECONDARY (outline)
  *   exactly 2 grads   = --mm-grad (green 45deg) / --mm-grad-cta (yellow 135deg)
  *   one container     = 1280px
- *   one type ramp     = H1 56 / H2 40 / H3 26 / lead 20 / body 16 / small 14
+ *   one type ramp     = Figma Typography frame (node 1:128), six levels:
+ *                       desktop 56 / 48 / 40 / 32 / 24 / 20, mobile 40 / 36 / 32 / 24 / 20 / 18
+ *                       lead 20 / body 16 / small 14
+ *                       Levels are assigned by ROLE, not by tag: the Webflow export
+ *                       carries 1,216 <h4> and 677 <h3> that are mostly nav chrome
+ *                       and card titles, so those aliases are pinned to H5/H6.
  *   motion            = content visible by default; animation only adds.
  */
 
@@ -34,10 +39,16 @@
   /* ---- type ---- */
   --mm-font-display: 'Unbounded', sans-serif;
   --mm-font-body: 'Poppins', sans-serif;
-  --mm-h1: clamp(40px, 4.2vw, 56px);
-  --mm-h2: clamp(28px, 3vw, 40px);
-  --mm-h3: clamp(20px, 2vw, 26px);
-  --mm-h4: clamp(17px, 1.5vw, 20px);
+  /* Six-level ramp, straight off the Figma Typography frame (node 1:128).
+     Each clamp interpolates linearly between the two artboards Figma specifies:
+     375px (mobile column) and 1440px (desktop column). Verify by evaluating the
+     preferred term at those widths — it lands exactly on the min and the max. */
+  --mm-h1: clamp(40px, 34.366px + 1.5023vw, 56px); /* 40 -> 56 */
+  --mm-h2: clamp(36px, 31.775px + 1.1268vw, 48px); /* 36 -> 48 */
+  --mm-h3: clamp(32px, 29.183px + 0.7512vw, 40px); /* 32 -> 40 */
+  --mm-h4: clamp(24px, 21.183px + 0.7512vw, 32px); /* 24 -> 32 */
+  --mm-h5: clamp(20px, 18.592px + 0.3756vw, 24px); /* 20 -> 24 */
+  --mm-h6: clamp(18px, 17.296px + 0.1878vw, 20px); /* 18 -> 20 */
   --mm-lead: clamp(17px, 1.4vw, 20px);
   --mm-body: 16px;
   --mm-small: 14px;
@@ -73,7 +84,7 @@ html {
 h1, .heading-style-h1, .inner-banner-heading, .inner-banner-heading-gradient, .banner-title {
   font-family: var(--mm-font-display) !important;
   font-size: var(--mm-h1) !important;
-  line-height: 1.1 !important;
+  line-height: 1.2 !important;
   font-weight: 600 !important;
   letter-spacing: -0.02em !important;
   text-wrap: balance;
@@ -81,7 +92,7 @@ h1, .heading-style-h1, .inner-banner-heading, .inner-banner-heading-gradient, .b
 h2, .heading-style-h2, .main-heading-style-h3, .cta-yellow-heading {
   font-family: var(--mm-font-display) !important;
   font-size: var(--mm-h2) !important;
-  line-height: 1.16 !important;
+  line-height: 1.2 !important;
   font-weight: 600 !important;
   letter-spacing: -0.015em !important;
   text-wrap: balance;
@@ -89,15 +100,35 @@ h2, .heading-style-h2, .main-heading-style-h3, .cta-yellow-heading {
 h3, .heading-style-h3 {
   font-family: var(--mm-font-display) !important;
   font-size: var(--mm-h3) !important;
-  line-height: 1.22 !important;
+  line-height: 1.2 !important;
   font-weight: 600 !important;
   letter-spacing: -0.01em !important;
   text-wrap: balance;
 }
-h4, .heading-style-h4, .heading-12, .heading-6, .heading-7, .box-title-wrapper h4 {
+h4, .heading-style-h4, .heading-12, .box-title-wrapper h4 {
   font-family: var(--mm-font-display) !important;
   font-size: var(--mm-h4) !important;
   line-height: 1.3 !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+}
+/* H5 — card and sub-section titles. These sit one level below a section heading;
+   at H3/H4 sizes they overflow their cards. Class beats tag, so .blog-card-title
+   on an <h3> lands here rather than on the H3 rule. */
+h5, .heading-style-h5, .heading-5, .blog-card-title, .reels-title, .job-title {
+  font-family: var(--mm-font-display) !important;
+  font-size: var(--mm-h5) !important;
+  line-height: 1.4 !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+}
+/* H6 — kickers and menu labels. .heading-6 ("Featured from Blog") and .heading-7
+   (megamenu service links) are ~1,176 nav-chrome elements wearing <h3>/<h4> tags.
+   They keep their present 20px and must never ride the content ramp upward. */
+h6, .heading-style-h6, .heading-6, .heading-7 {
+  font-family: var(--mm-font-display) !important;
+  font-size: var(--mm-h6) !important;
+  line-height: 1.4 !important;
   font-weight: 600 !important;
   letter-spacing: 0 !important;
 }
@@ -171,6 +202,7 @@ p, .who-para, .who-para.left-align, .hero_header-para, .our-sol-para,
 [id^="tool-button"],
 input[type="submit"],
 form button:not([class]),
+.pop-submit-btn,
 button.qxCTlb {
   display: inline-flex !important;
   align-items: center !important;
@@ -228,20 +260,20 @@ button.qxCTlb {
 /* One hover/press/focus language for both (F12). */
 .w-button:hover, .button:hover, .solid-button-wrapper:hover,
 .brand_button-double:hover, .button-brand:hover, .hero-banner-btn:hover,
-input[type="submit"]:hover, button.qxCTlb:hover, [id^="tool-button"]:hover, .case-btn:hover, .get-tool:hover, .text-btn:hover, .mm-btn-secondary:hover {
+input[type="submit"]:hover, button.qxCTlb:hover, [id^="tool-button"]:hover, .case-btn:hover, .get-tool:hover, .text-btn:hover, .mm-btn-secondary:hover, .pop-submit-btn:hover {
   transform: translateY(-2px);
   filter: saturate(1.08) brightness(1.03);
 }
 .w-button:active, .button:active, .solid-button-wrapper:active,
 .brand_button-double:active, .button-brand:active, .hero-banner-btn:active,
-input[type="submit"]:active, button.qxCTlb:active, [id^="tool-button"]:active, .case-btn:active, .get-tool:active, .text-btn:active, .mm-btn-secondary:active {
+input[type="submit"]:active, button.qxCTlb:active, [id^="tool-button"]:active, .case-btn:active, .get-tool:active, .text-btn:active, .mm-btn-secondary:active, .pop-submit-btn:active {
   transform: translateY(0);
   filter: saturate(1) brightness(0.98);
 }
 .w-button:focus-visible, .button:focus-visible, .solid-button-wrapper:focus-visible,
 .brand_button-double:focus-visible, .button-brand:focus-visible,
 input[type="submit"]:focus-visible, button.qxCTlb:focus-visible,
-.text-btn:focus-visible, .mm-btn-secondary:focus-visible {
+.text-btn:focus-visible, .mm-btn-secondary:focus-visible, .pop-submit-btn:focus-visible {
   outline: 2px solid var(--mm-teal);
   outline-offset: 2px;
 }
@@ -260,9 +292,9 @@ input[type="submit"]:focus-visible, button.qxCTlb:focus-visible,
   font-weight: 500 !important;
 }
 nav h1, nav h2, nav h3, nav h4,
-.w-dropdown-list h3, .w-dropdown-list h4,
-.w-dropdown-list .heading-6, .w-dropdown-list .heading-7,
-nav .heading-6, nav .heading-7 {
+.w-dropdown-list h3, .w-dropdown-list h4, .w-dropdown-list h5,
+.w-dropdown-list .heading-5, .w-dropdown-list .heading-6, .w-dropdown-list .heading-7,
+nav .heading-5, nav .heading-6, nav .heading-7 {
   font-family: var(--mm-font-display) !important;
   font-size: 16px !important;
   line-height: 1.35 !important;
@@ -451,7 +483,9 @@ html .k-main-wrapper.orange {
 .section-agency .text-size-regular.text-weight-bold,
 .section-agency .text-size-medium.text-weight-bold {
   font-family: var(--mm-font-display) !important;
-  font-size: var(--mm-h4) !important;
+  /* Prose sub-heads / FAQ questions. These tracked --mm-h4 when it meant 20px;
+     now that H4 is 32px they belong on H6, which is the level that kept 20px. */
+  font-size: var(--mm-h6) !important;
   font-weight: 600 !important;
   line-height: 1.3 !important;
   margin: 1.6em 0 0.5em !important;
@@ -461,11 +495,45 @@ html .k-main-wrapper.orange {
 }
 .section-agency .w-button, .section-agency .button { margin-top: 1.4rem; }
 /* Semantic tag wins over Webflow class aliases (e.g. <h2 class="heading-style-h4">):
-   hierarchy follows the HTML outline, everywhere. */
-h1.heading-style-h2, h1.heading-style-h3, h1.heading-style-h4,
-h1.main-heading-style-h3, h1.cta-yellow-heading { font-size: var(--mm-h1) !important; }
-h2.heading-style-h3, h2.heading-style-h4 { font-size: var(--mm-h2) !important; }
-h3.heading-style-h4, h3.heading-style-h2, h3.heading-style-h1 { font-size: var(--mm-h3) !important; }
+   hierarchy follows the HTML outline, everywhere.
+
+   These selectors are (0,1,1) — an attribute plus a tag — so they outrank the
+   bare .heading-style-* class rules (0,1,0) in section 2. They must restate the
+   WHOLE level (size + leading + tracking), not just font-size: specificity is
+   resolved per property, so a size-only patch leaves the heading wearing its
+   own size with the alias level's line-height and letter-spacing.
+   [class*=] matches every heading-style-* alias at once, so a new alias in a
+   future export cannot reopen the gap. */
+h1[class*="heading-style-"], h1.main-heading-style-h3, h1.cta-yellow-heading {
+  font-size: var(--mm-h1) !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.02em !important;
+}
+h2[class*="heading-style-"], h2.main-heading-style-h3, h2.cta-yellow-heading {
+  font-size: var(--mm-h2) !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.015em !important;
+}
+h3[class*="heading-style-"] {
+  font-size: var(--mm-h3) !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.01em !important;
+}
+h4[class*="heading-style-"] {
+  font-size: var(--mm-h4) !important;
+  line-height: 1.3 !important;
+  letter-spacing: 0 !important;
+}
+h5[class*="heading-style-"] {
+  font-size: var(--mm-h5) !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0 !important;
+}
+h6[class*="heading-style-"] {
+  font-size: var(--mm-h6) !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0 !important;
+}
 
 /* ============================================================
    8 · CARDS & TILES (F9) — equal heights are structural.
