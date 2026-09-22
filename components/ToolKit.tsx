@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, type FormEvent, type ReactNode } from 'react';
+import { getRecaptchaToken } from '@/lib/recaptcha';
 
 /**
  * Shared UI kit for the free interactive lead-gen tools.
@@ -142,21 +143,25 @@ export function useLeadGate({ toolName, pageName, toolPath }: GateConfig) {
     } catch {
       /* private mode */
     }
-    void fetch('/api/lead-magnet', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name,
-        email,
-        company,
-        pdfName: toolName,
-        pageName,
-        tool_link: `https://marketingmojito.com${toolPath}`,
-        resultDetails: extras?.resultDetails,
-        auditUrl: extras?.auditUrl,
-        _loaded: Date.now() - 3000,
-      }),
-    }).catch(() => {});
+    void (async () => {
+      const recaptchaToken = await getRecaptchaToken('lead_magnet');
+      await fetch('/api/lead-magnet', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          email,
+          company,
+          pdfName: toolName,
+          pageName,
+          tool_link: `https://marketingmojito.com${toolPath}`,
+          resultDetails: extras?.resultDetails,
+          auditUrl: extras?.auditUrl,
+          recaptchaToken,
+          _loaded: Date.now() - 3000,
+        }),
+      });
+    })().catch(() => {});
     setSubmitted(true);
     setSubmittedEmail(email);
     setOpen(false);

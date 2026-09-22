@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useMemo, useState } from 'react';
+import { getRecaptchaToken } from '@/lib/recaptcha';
 import { freeTemplatesBaseSections } from '@/lib/free-templates-data';
 import type { FreeTool } from '@/lib/free-templates-data';
 
@@ -229,6 +230,7 @@ export default function LeadMagnetToolsSection() {
     const prevText = btn.textContent;
     btn.textContent = 'Sending...';
     try {
+      const recaptchaToken = await getRecaptchaToken('lead_magnet');
       const res = await fetch('/api/lead-magnet', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -238,6 +240,8 @@ export default function LeadMagnetToolsSection() {
           pdfName: selectedTool.title,
           pageName: 'Free Templates',
           tool_link: pdfUrl,
+          recaptchaToken,
+          _loaded: Date.now() - 3000,
         }),
       });
       const data = await res.json();

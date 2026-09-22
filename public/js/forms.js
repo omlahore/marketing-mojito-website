@@ -19,12 +19,17 @@
   // Load reCAPTCHA script and get token
   function getRecaptchaToken(siteKey, action, cb) {
     if (!siteKey) { cb(''); return; }
+    // grecaptcha.ready is required — calling execute before the API finishes
+    // initialising throws, and the server now rejects an empty token outright.
     function doExecute() {
-      if (typeof grecaptcha !== 'undefined' && grecaptcha.execute) {
-        grecaptcha.execute(siteKey, { action: action || 'submit' }).then(cb).catch(() => cb(''));
-      } else {
-        cb('');
-      }
+      if (typeof grecaptcha === 'undefined' || !grecaptcha.ready) { cb(''); return; }
+      grecaptcha.ready(function () {
+        try {
+          grecaptcha.execute(siteKey, { action: action || 'submit' }).then(cb).catch(() => cb(''));
+        } catch (e) {
+          cb('');
+        }
+      });
     }
     if (typeof grecaptcha !== 'undefined') {
       doExecute();

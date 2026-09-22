@@ -1,6 +1,7 @@
 'use client';
 
 import PageShell from '@/components/PageShell';
+import { getRecaptchaToken } from '@/lib/recaptcha';
 import type { CSSProperties, DragEvent, FormEvent, ReactNode } from 'react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
@@ -443,19 +444,23 @@ export default function EmailSignatureGeneratorPage() {
         /* private mode */
       }
 
-      void fetch('/api/lead-magnet', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name,
-          email,
-          company: leadCompany.trim(),
-          pdfName: 'Email Signature Generator',
-          pageName: 'Free Tools - Email Signature Generator',
-          tool_link: 'https://marketingmojito.com/free-tools/email-signature-generator',
-          _loaded: Date.now() - 3000,
-        }),
-      });
+      void (async () => {
+        const recaptchaToken = await getRecaptchaToken('lead_magnet');
+        await fetch('/api/lead-magnet', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name,
+            email,
+            company: leadCompany.trim(),
+            pdfName: 'Email Signature Generator',
+            pageName: 'Free Tools - Email Signature Generator',
+            tool_link: 'https://marketingmojito.com/free-tools/email-signature-generator',
+            recaptchaToken,
+            _loaded: Date.now() - 3000,
+          }),
+        });
+      })().catch(() => {});
 
       setLeadGateOpen(false);
       setExportHtml(buildSignatureHtml(state));

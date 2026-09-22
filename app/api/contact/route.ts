@@ -41,11 +41,10 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: false, error: 'Failed to send' }, { status: 400 });
     }
 
-    // reCAPTCHA v3 (when configured) - only verify if token was sent (script may fail to load)
-    if (process.env.RECAPTCHA_SECRET_KEY && body.recaptchaToken) {
-      if (!(await verifyRecaptcha(body.recaptchaToken))) {
-        return NextResponse.json({ success: false, error: 'Verification failed' }, { status: 400 });
-      }
+    // reCAPTCHA v3 - REQUIRED whenever a secret is configured. A missing token is
+    // a failure, not a skip, so a direct POST that omits the field is rejected.
+    if (process.env.RECAPTCHA_SECRET_KEY && !(await verifyRecaptcha(body.recaptchaToken))) {
+      return NextResponse.json({ success: false, error: 'Verification failed' }, { status: 400 });
     }
 
     // Send email to both team members

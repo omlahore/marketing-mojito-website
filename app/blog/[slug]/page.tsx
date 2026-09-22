@@ -185,6 +185,35 @@ export default async function BlogPostPage({ params }: PageProps) {
                 </div>
               );
             })()}
+            {/* FAQ answers must be visible on the page — Google rejects FAQPage
+                schema whose Q&A content the user cannot actually see. */}
+            {post.faqs && post.faqs.length > 0 && (
+              <section
+                style={{ marginTop: '3rem', paddingTop: '2rem', borderTop: '1px solid #eee' }}
+              >
+                <h2 style={{ fontSize: '1.5rem', color: '#1a1a1a', marginBottom: '1.5rem' }}>
+                  Frequently asked questions
+                </h2>
+                <dl style={{ margin: 0 }}>
+                  {post.faqs.map((f) => (
+                    <div key={f.question} style={{ marginBottom: '1.5rem' }}>
+                      <dt
+                        style={{
+                          fontWeight: 600,
+                          color: '#1a1a1a',
+                          marginBottom: '0.5rem',
+                          fontSize: '1.05rem',
+                        }}
+                      >
+                        {f.question}
+                      </dt>
+                      <dd style={{ margin: 0, lineHeight: 1.7, color: '#333' }}>{f.answer}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </section>
+            )}
+
             <BlogCtaEnd categories={post.categories} title={post.title} />
           </article>
 

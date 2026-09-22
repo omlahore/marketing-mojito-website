@@ -11,9 +11,19 @@ const MAX_SUBMIT_DELAY_MS = 24 * 60 * 60 * 1000; // max 24 hours (prevent replay
 const ipCounts = new Map<string, { count: number; resetAt: number }>();
 
 function getClientIp(request: Request): string {
+  // Nginx sets X-Real-IP from $remote_addr, which the client cannot forge.
+  const real = request.headers.get('x-real-ip');
+  if (real) return real.trim();
+
+  // X-Forwarded-For is built with $proxy_add_x_forwarded_for, i.e. whatever the
+  // client sent plus our proxy's view appended. Only the LAST entry is trusted;
+  // reading the first lets a bot mint a fresh rate-limit bucket per request.
   const forwarded = request.headers.get('x-forwarded-for');
-  if (forwarded) return forwarded.split(',')[0].trim();
-  return request.headers.get('x-real-ip') || 'unknown';
+  if (forwarded) {
+    const parts = forwarded.split(',');
+    return parts[parts.length - 1].trim();
+  }
+  return 'unknown';
 }
 
 export function checkRateLimit(request: Request): boolean {
@@ -69,7 +79,20 @@ export async function verifyRecaptcha(token: string): Promise<boolean> {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: `secret=${encodeURIComponent(secret)}&response=${encodeURIComponent(token)}`,
     });
-    const data = (await res.json()) as { success?: boolean; score?: number };
+    const data = (await res.json()) as {
+      success?: boolean;
+      score?: number;
+      'error-codes'?: string[];
+    };
+
+    // A bad secret or unregistered domain rejects every real visitor silently,
+    // now that a failed verification blocks the submission. Log it loudly so it
+    // shows up in `pm2 logs` instead of quietly killing the funnel.
+    const codes = data['error-codes'] || [];
+    if (codes.includes('invalid-input-secret') || codes.includes('invalid-keys')) {
+      console.error('RECAPTCHA MISCONFIGURED - all form submissions are being rejected:', codes);
+    }
+
     return Boolean(data.success && (data.score ?? 0) >= 0.3);
   } catch {
     return false;

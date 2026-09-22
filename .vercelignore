@@ -1,0 +1,8 @@
+# Vercel builds from source: none of this needs uploading.
+_archive
+.next
+node_modules
+.git
+*.tar.gz
+*.zip
+blog.WordPress.*.xml

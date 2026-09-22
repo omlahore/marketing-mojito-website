@@ -1,13 +1,23 @@
+/* mm-tokens.css sizes every h2/h3 at section-heading scale with !important.
+   Article headings need a reading scale, so they get a more specific override. */
 .blog-content h2 {
-  font-size: 1.5rem;
-  margin-top: 2rem;
-  margin-bottom: 0.75rem;
+  font-size: clamp(22px, 20px + 0.5vw, 28px) !important;
+  line-height: 1.3 !important;
+  margin: 2.25rem 0 0.75rem !important;
   color: #1a1a1a;
 }
 .blog-content h3 {
-  font-size: 1.25rem;
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
+  font-size: clamp(18px, 17px + 0.3vw, 21px) !important;
+  line-height: 1.35 !important;
+  margin: 1.5rem 0 0.5rem !important;
+}
+.blog-content h4 {
+  font-size: 17px !important;
+  line-height: 1.4 !important;
+}
+.blog-content li {
+  font-size: 16px;
+  margin-bottom: 0.4rem;
 }
 .blog-content p {
   margin-bottom: 1rem;
@@ -32,3 +42,23 @@
 /* Old WordPress uploads no longer exist on the server - hide dead in-article images
    (incl. blogstest.marketingmojito.com) instead of showing broken-image icons. */
 .blog-content img[src*="/wp-content/"] { display: none; }
+.blog-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0 1.5rem;
+  font-size: 0.95rem;
+  display: block;
+  overflow-x: auto;
+}
+.blog-content th,
+.blog-content td {
+  border: 1px solid #e3e3de;
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+}
+.blog-content th {
+  background: #f5f5f0;
+  color: #1c1c1c;
+  font-weight: 600;
+}
